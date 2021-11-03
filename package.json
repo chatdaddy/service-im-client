@@ -1,0 +1,20 @@
+{
+  "name": "@chatdaddy/service-im-client",
+  "version": "0.1.0",
+  "dependencies": {
+    "axios": "^0.21.1"
+  },
+  "main": "lib/index",
+  "files": [
+    "lib"
+  ],
+  "devDependencies": {
+    "@types/node": "^14.6.2",
+    "ts-node": "^10.1.0",
+    "typescript": "^4.0.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepare": "tsc"
+  }
+}

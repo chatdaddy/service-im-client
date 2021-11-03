@@ -1,2 +1,1 @@
-# service-im-client
-IM Service Typescript Client
+# ChatDaddy IM Service Client
