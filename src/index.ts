@@ -1,1 +1,1 @@
-export * from './OpenAPI'
+export * from './OpenAPI/InstantMessaging'
