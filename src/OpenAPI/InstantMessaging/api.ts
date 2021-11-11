@@ -145,6 +145,31 @@ export enum AccountType {
 }
 
 /**
+ * Update an account. Specifying account updates the type
+ * @export
+ * @interface AccountsPatchRequest
+ */
+export interface AccountsPatchRequest {
+    /**
+     * 
+     * @type {AccountType}
+     * @memberof AccountsPatchRequest
+     */
+    'type'?: AccountType;
+    /**
+     * 
+     * @type {string}
+     * @memberof AccountsPatchRequest
+     */
+    'nickname'?: string;
+    /**
+     * 
+     * @type {AccountSettings}
+     * @memberof AccountsPatchRequest
+     */
+    'settings'?: AccountSettings;
+}
+/**
  * 
  * @export
  * @interface Chat
@@ -1844,6 +1869,48 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
+         * @summary Delete an account
+         * @param {string} accountId 
+         * @param {AccountsPatchRequest} [accountsPatchRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsPatch: async (accountId: string, accountsPatchRequest?: AccountsPatchRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'accountId' is not null or undefined
+            assertParamExists('accountsPatch', 'accountId', accountId)
+            const localVarPath = `/accounts/{accountId}`
+                .replace(`{${"accountId"}}`, encodeURIComponent(String(accountId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication chatdaddy required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", [], configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(accountsPatchRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Add a new account
          * @param {InlineObject} [inlineObject] 
          * @param {*} [options] Override http request option.
@@ -1947,6 +2014,18 @@ export const AccountApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Delete an account
+         * @param {string} accountId 
+         * @param {AccountsPatchRequest} [accountsPatchRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsPatch(accountId: string, accountsPatchRequest?: AccountsPatchRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsPatch(accountId, accountsPatchRequest, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @summary Add a new account
          * @param {InlineObject} [inlineObject] 
          * @param {*} [options] Override http request option.
@@ -2015,6 +2094,17 @@ export const AccountApiFactory = function (configuration?: Configuration, basePa
          */
         accountsOpen(accountId: string, options?: any): AxiosPromise<void> {
             return localVarFp.accountsOpen(accountId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @summary Delete an account
+         * @param {string} accountId 
+         * @param {AccountsPatchRequest} [accountsPatchRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsPatch(accountId: string, accountsPatchRequest?: AccountsPatchRequest, options?: any): AxiosPromise<InlineResponse2001> {
+            return localVarFp.accountsPatch(accountId, accountsPatchRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -2094,6 +2184,19 @@ export class AccountApi extends BaseAPI {
      */
     public accountsOpen(accountId: string, options?: AxiosRequestConfig) {
         return AccountApiFp(this.configuration).accountsOpen(accountId, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @summary Delete an account
+     * @param {string} accountId 
+     * @param {AccountsPatchRequest} [accountsPatchRequest] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountApi
+     */
+    public accountsPatch(accountId: string, accountsPatchRequest?: AccountsPatchRequest, options?: AxiosRequestConfig) {
+        return AccountApiFp(this.configuration).accountsPatch(accountId, accountsPatchRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4319,7 +4422,7 @@ export const MessagesApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @summary Send a message
-         * @param {string} accountId 
+         * @param {string} accountId The account to use to send the message.  Pass as the literal \&quot;random\&quot; to use a random account 
          * @param {string} chatId 
          * @param {MessageCompose} [messageCompose] 
          * @param {*} [options] Override http request option.
@@ -4489,7 +4592,7 @@ export const MessagesApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @summary Send a message
-         * @param {string} accountId 
+         * @param {string} accountId The account to use to send the message.  Pass as the literal \&quot;random\&quot; to use a random account 
          * @param {string} chatId 
          * @param {MessageCompose} [messageCompose] 
          * @param {*} [options] Override http request option.
@@ -4588,7 +4691,7 @@ export const MessagesApiFactory = function (configuration?: Configuration, baseP
         /**
          * 
          * @summary Send a message
-         * @param {string} accountId 
+         * @param {string} accountId The account to use to send the message.  Pass as the literal \&quot;random\&quot; to use a random account 
          * @param {string} chatId 
          * @param {MessageCompose} [messageCompose] 
          * @param {*} [options] Override http request option.
@@ -4695,7 +4798,7 @@ export class MessagesApi extends BaseAPI {
     /**
      * 
      * @summary Send a message
-     * @param {string} accountId 
+     * @param {string} accountId The account to use to send the message.  Pass as the literal \&quot;random\&quot; to use a random account 
      * @param {string} chatId 
      * @param {MessageCompose} [messageCompose] 
      * @param {*} [options] Override http request option.
