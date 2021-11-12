@@ -2333,11 +2333,12 @@ export const ChatsApiAxiosParamCreator = function (configuration?: Configuration
          * @summary Get chats that contain the message queried
          * @param {string} q 
          * @param {number} [page] 
+         * @param {string} [chatId] 
          * @param {Array<string>} [accountId] Get contacts only belonging to this account
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        chatsMessageGet: async (q: string, page?: number, accountId?: Array<string>, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        chatsMessageGet: async (q: string, page?: number, chatId?: string, accountId?: Array<string>, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'q' is not null or undefined
             assertParamExists('chatsMessageGet', 'q', q)
             const localVarPath = `/chats/message-search`;
@@ -2362,6 +2363,10 @@ export const ChatsApiAxiosParamCreator = function (configuration?: Configuration
 
             if (q !== undefined) {
                 localVarQueryParameter['q'] = q;
+            }
+
+            if (chatId !== undefined) {
+                localVarQueryParameter['chatId'] = chatId;
             }
 
             if (accountId) {
@@ -2514,12 +2519,13 @@ export const ChatsApiFp = function(configuration?: Configuration) {
          * @summary Get chats that contain the message queried
          * @param {string} q 
          * @param {number} [page] 
+         * @param {string} [chatId] 
          * @param {Array<string>} [accountId] Get contacts only belonging to this account
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async chatsMessageGet(q: string, page?: number, accountId?: Array<string>, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.chatsMessageGet(q, page, accountId, options);
+        async chatsMessageGet(q: string, page?: number, chatId?: string, accountId?: Array<string>, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.chatsMessageGet(q, page, chatId, accountId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -2587,12 +2593,13 @@ export const ChatsApiFactory = function (configuration?: Configuration, basePath
          * @summary Get chats that contain the message queried
          * @param {string} q 
          * @param {number} [page] 
+         * @param {string} [chatId] 
          * @param {Array<string>} [accountId] Get contacts only belonging to this account
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        chatsMessageGet(q: string, page?: number, accountId?: Array<string>, options?: any): AxiosPromise<InlineResponse2003> {
-            return localVarFp.chatsMessageGet(q, page, accountId, options).then((request) => request(axios, basePath));
+        chatsMessageGet(q: string, page?: number, chatId?: string, accountId?: Array<string>, options?: any): AxiosPromise<InlineResponse2003> {
+            return localVarFp.chatsMessageGet(q, page, chatId, accountId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -2659,13 +2666,14 @@ export class ChatsApi extends BaseAPI {
      * @summary Get chats that contain the message queried
      * @param {string} q 
      * @param {number} [page] 
+     * @param {string} [chatId] 
      * @param {Array<string>} [accountId] Get contacts only belonging to this account
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ChatsApi
      */
-    public chatsMessageGet(q: string, page?: number, accountId?: Array<string>, options?: AxiosRequestConfig) {
-        return ChatsApiFp(this.configuration).chatsMessageGet(q, page, accountId, options).then((request) => request(this.axios, this.basePath));
+    public chatsMessageGet(q: string, page?: number, chatId?: string, accountId?: Array<string>, options?: AxiosRequestConfig) {
+        return ChatsApiFp(this.configuration).chatsMessageGet(q, page, chatId, accountId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
