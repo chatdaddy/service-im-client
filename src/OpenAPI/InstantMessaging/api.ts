@@ -4434,13 +4434,13 @@ export const MessagesApiAxiosParamCreator = function (configuration?: Configurat
          * @param {string} q 
          * @param {Array<string>} [accountId] Get contacts only belonging to this account
          * @param {string} [chatId] 
-         * @param {string} [page] Page number
+         * @param {number} [page] Page number
          * @param {number} [count] Number of messages to fetch
          * @param {boolean} [returnChats] Return the corresponding chats alongside the messages
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        messagesSearch: async (q: string, accountId?: Array<string>, chatId?: string, page?: string, count?: number, returnChats?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        messagesSearch: async (q: string, accountId?: Array<string>, chatId?: string, page?: number, count?: number, returnChats?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'q' is not null or undefined
             assertParamExists('messagesSearch', 'q', q)
             const localVarPath = `/messages/search`;
@@ -4604,13 +4604,13 @@ export const MessagesApiFp = function(configuration?: Configuration) {
          * @param {string} q 
          * @param {Array<string>} [accountId] Get contacts only belonging to this account
          * @param {string} [chatId] 
-         * @param {string} [page] Page number
+         * @param {number} [page] Page number
          * @param {number} [count] Number of messages to fetch
          * @param {boolean} [returnChats] Return the corresponding chats alongside the messages
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async messagesSearch(q: string, accountId?: Array<string>, chatId?: string, page?: string, count?: number, returnChats?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
+        async messagesSearch(q: string, accountId?: Array<string>, chatId?: string, page?: number, count?: number, returnChats?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.messagesSearch(q, accountId, chatId, page, count, returnChats, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4717,13 +4717,13 @@ export const MessagesApiFactory = function (configuration?: Configuration, baseP
          * @param {string} q 
          * @param {Array<string>} [accountId] Get contacts only belonging to this account
          * @param {string} [chatId] 
-         * @param {string} [page] Page number
+         * @param {number} [page] Page number
          * @param {number} [count] Number of messages to fetch
          * @param {boolean} [returnChats] Return the corresponding chats alongside the messages
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        messagesSearch(q: string, accountId?: Array<string>, chatId?: string, page?: string, count?: number, returnChats?: boolean, options?: any): AxiosPromise<InlineResponse2005> {
+        messagesSearch(q: string, accountId?: Array<string>, chatId?: string, page?: number, count?: number, returnChats?: boolean, options?: any): AxiosPromise<InlineResponse2005> {
             return localVarFp.messagesSearch(q, accountId, chatId, page, count, returnChats, options).then((request) => request(axios, basePath));
         },
     };
@@ -4843,14 +4843,14 @@ export class MessagesApi extends BaseAPI {
      * @param {string} q 
      * @param {Array<string>} [accountId] Get contacts only belonging to this account
      * @param {string} [chatId] 
-     * @param {string} [page] Page number
+     * @param {number} [page] Page number
      * @param {number} [count] Number of messages to fetch
      * @param {boolean} [returnChats] Return the corresponding chats alongside the messages
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MessagesApi
      */
-    public messagesSearch(q: string, accountId?: Array<string>, chatId?: string, page?: string, count?: number, returnChats?: boolean, options?: AxiosRequestConfig) {
+    public messagesSearch(q: string, accountId?: Array<string>, chatId?: string, page?: number, count?: number, returnChats?: boolean, options?: AxiosRequestConfig) {
         return MessagesApiFp(this.configuration).messagesSearch(q, accountId, chatId, page, count, returnChats, options).then((request) => request(this.axios, this.basePath));
     }
 }
