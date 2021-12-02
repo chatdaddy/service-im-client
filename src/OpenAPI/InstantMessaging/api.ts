@@ -14,7 +14,7 @@
 
 
 import { Configuration } from './configuration';
-import globalAxios, { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import globalAxios, { AxiosPromise, AxiosInstance } from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from './common';
@@ -32,79 +32,79 @@ export interface Account {
      * @type {string}
      * @memberof Account
      */
-    'accountId': string;
+    accountId: string;
     /**
      * Owner of thr account
      * @type {string}
      * @memberof Account
      */
-    'ownerId': string;
+    ownerId: string;
     /**
      * User facing nickname of the account
      * @type {string}
      * @memberof Account
      */
-    'nickname': string;
+    nickname: string;
     /**
      * 
      * @type {{ [key: string]: any; }}
      * @memberof Account
      */
-    'credentials'?: { [key: string]: any; } | null;
+    credentials?: { [key: string]: any; } | null;
     /**
      * 
      * @type {AccountType}
      * @memberof Account
      */
-    'type': AccountType;
+    type: AccountType;
     /**
      * An ISO formatted timestamp
      * @type {string}
      * @memberof Account
      */
-    'createdAt': string;
+    createdAt: string;
     /**
      * An ISO formatted timestamp
      * @type {string}
      * @memberof Account
      */
-    'updatedAt': string;
+    updatedAt: string;
     /**
      * 
      * @type {State}
      * @memberof Account
      */
-    'state': State;
+    state: State;
     /**
      * 
      * @type {AccountError}
      * @memberof Account
      */
-    'error'?: AccountError | null;
+    error?: AccountError | null;
     /**
      * 
      * @type {{ [key: string]: any; }}
      * @memberof Account
      */
-    'stateInfo': { [key: string]: any; };
+    stateInfo: { [key: string]: any; };
     /**
      * 
      * @type {boolean}
      * @memberof Account
      */
-    'canLogin': boolean;
+    canLogin: boolean;
     /**
      * 
      * @type {Contact}
      * @memberof Account
      */
-    'user'?: Contact;
+    user?: Contact;
     /**
      * 
      * @type {AccountSettings}
      * @memberof Account
      */
-    'settings': AccountSettings;
+    settings: AccountSettings;
 }
 /**
  * 
@@ -117,7 +117,7 @@ export interface AccountError {
      * @type {string}
      * @memberof AccountError
      */
-    'message'?: string;
+    message?: string;
 }
 /**
  * 
@@ -130,14 +130,13 @@ export interface AccountSettings {
      * @type {Array<string>}
      * @memberof AccountSettings
      */
-    'notifyUsers'?: Array<string>;
+    notifyUsers?: Array<string>;
 }
 /**
  * 
  * @export
  * @enum {string}
  */
-
 export enum AccountType {
     Wa = 'wa',
     WaMd = 'wa-md',
@@ -155,19 +154,19 @@ export interface AccountsPatchRequest {
      * @type {AccountType}
      * @memberof AccountsPatchRequest
      */
-    'type'?: AccountType;
+    type?: AccountType;
     /**
      * 
      * @type {string}
      * @memberof AccountsPatchRequest
      */
-    'nickname'?: string;
+    nickname?: string;
     /**
      * 
      * @type {AccountSettings}
      * @memberof AccountsPatchRequest
      */
-    'settings'?: AccountSettings;
+    settings?: AccountSettings;
 }
 /**
  * 
@@ -180,109 +179,109 @@ export interface Chat {
      * @type {string}
      * @memberof Chat
      */
-    'accountId': string;
+    accountId: string;
     /**
      * chat ID
      * @type {string}
      * @memberof Chat
      */
-    'id': string;
+    id: string;
     /**
      * An ISO formatted timestamp
      * @type {string}
      * @memberof Chat
      */
-    'lastMessage': string;
+    lastMessage: string;
     /**
      * Number of unread messages
      * @type {number}
      * @memberof Chat
      */
-    'unread': number;
+    unread: number;
     /**
      * 
      * @type {boolean}
      * @memberof Chat
      */
-    'spam'?: boolean;
+    spam?: boolean;
     /**
      * 
      * @type {boolean}
      * @memberof Chat
      */
-    'archive': boolean;
+    archive: boolean;
     /**
      * 
      * @type {boolean}
      * @memberof Chat
      */
-    'readOnly': boolean;
+    readOnly: boolean;
     /**
      * Timestamp of when the chat was muted
      * @type {number}
      * @memberof Chat
      */
-    'mute'?: number | null;
+    mute?: number | null;
     /**
      * Timestamp of when the chat was pinned
      * @type {number}
      * @memberof Chat
      */
-    'pin'?: number | null;
+    pin?: number | null;
     /**
      * did the user create this contact
      * @type {boolean}
      * @memberof Chat
      */
-    'isUserGenerated': boolean;
+    isUserGenerated: boolean;
     /**
      * does this chat have any pending messages
      * @type {boolean}
      * @memberof Chat
      */
-    'hasPendingMessage'?: boolean;
+    hasPendingMessage?: boolean;
     /**
      * does this chat have any unsolved notes
      * @type {boolean}
      * @memberof Chat
      */
-    'hasUnsolvedNote'?: boolean;
+    hasUnsolvedNote?: boolean;
     /**
      * the user IDs mentioned in the chat
      * @type {Array<string>}
      * @memberof Chat
      */
-    'mentions'?: Array<string>;
+    mentions?: Array<string>;
     /**
      * if disappearing messages is on, and for how long
      * @type {number}
      * @memberof Chat
      */
-    'disappearingMessages'?: number | null;
+    disappearingMessages?: number | null;
     /**
      * 
      * @type {Contact}
      * @memberof Chat
      */
-    'contact': Contact;
+    contact: Contact;
     /**
      * 
      * @type {Array<Message>}
      * @memberof Chat
      */
-    'messages'?: Array<Message>;
+    messages?: Array<Message>;
     /**
      * 
      * @type {Array<ChatPresence>}
      * @memberof Chat
      */
-    'presences'?: Array<ChatPresence>;
+    presences?: Array<ChatPresence>;
     /**
      * cursor to sort chats by
      * @type {string}
      * @memberof Chat
      */
-    'cursor': string;
+    cursor: string;
 }
 /**
  * 
@@ -295,13 +294,13 @@ export interface ChatAction {
      * @type {string}
      * @memberof ChatAction
      */
-    'action': ChatActionActionEnum;
+    action: ChatActionActionEnum;
     /**
      * 
      * @type {boolean}
      * @memberof ChatAction
      */
-    'value': boolean;
+    value: boolean;
 }
 
 /**
@@ -327,37 +326,37 @@ export interface ChatPresence {
      * @type {string}
      * @memberof ChatPresence
      */
-    'accountId'?: string;
+    accountId?: string;
     /**
      * 
      * @type {string}
      * @memberof ChatPresence
      */
-    'id'?: string;
+    id?: string;
     /**
      * 
      * @type {string}
      * @memberof ChatPresence
      */
-    'contactId': string;
+    contactId: string;
     /**
      * if a known team member has this presence
      * @type {string}
      * @memberof ChatPresence
      */
-    'userId'?: string;
+    userId?: string;
     /**
      * An ISO formatted timestamp
      * @type {string}
      * @memberof ChatPresence
      */
-    'updatedAt': string;
+    updatedAt: string;
     /**
      * 
      * @type {PresenceType}
      * @memberof ChatPresence
      */
-    'type': PresenceType;
+    type: PresenceType;
 }
 /**
  * 
@@ -370,91 +369,91 @@ export interface Contact {
      * @type {string}
      * @memberof Contact
      */
-    'id': string;
+    id: string;
     /**
      * The account this is part of
      * @type {string}
      * @memberof Contact
      */
-    'accountId': string;
+    accountId: string;
     /**
      * 
      * @type {ContactType}
      * @memberof Contact
      */
-    'type': ContactType;
+    type: ContactType;
     /**
      * name of the contact as set on ChatDaddy
      * @type {string}
      * @memberof Contact
      */
-    'name': string | null;
+    name: string | null;
     /**
      * name of the contact, as set on the platform
      * @type {Array<string>}
      * @memberof Contact
      */
-    'platformNames': Array<string>;
+    platformNames: Array<string>;
     /**
      * An ISO formatted timestamp
      * @type {string}
      * @memberof Contact
      */
-    'createdAt'?: string;
+    createdAt?: string;
     /**
      * An ISO formatted timestamp
      * @type {string}
      * @memberof Contact
      */
-    'updatedAt'?: string;
+    updatedAt?: string;
     /**
      * 
      * @type {string}
      * @memberof Contact
      */
-    'phoneNumber': string | null;
+    phoneNumber: string | null;
     /**
      * 
      * @type {string}
      * @memberof Contact
      */
-    'email'?: string | null;
+    email?: string | null;
     /**
      * 
      * @type {ContactImg}
      * @memberof Contact
      */
-    'img'?: ContactImg | null;
+    img?: ContactImg | null;
     /**
      * Tags associated with this contact
      * @type {Array<Tag>}
      * @memberof Contact
      */
-    'tags': Array<Tag>;
+    tags: Array<Tag>;
     /**
      * The assignee of the contact
      * @type {string}
      * @memberof Contact
      */
-    'assignee'?: string | null;
+    assignee?: string | null;
     /**
      * The person who assigned this contact
      * @type {string}
      * @memberof Contact
      */
-    'assigner'?: string | null;
+    assigner?: string | null;
     /**
      * 
      * @type {number}
      * @memberof Contact
      */
-    'messagesSent': number;
+    messagesSent: number;
     /**
      * 
      * @type {number}
      * @memberof Contact
      */
-    'messagesReceived': number;
+    messagesReceived: number;
 }
 /**
  * 
@@ -467,20 +466,19 @@ export interface ContactImg {
      * @type {string}
      * @memberof ContactImg
      */
-    'url'?: string;
+    url?: string;
     /**
      * An ISO formatted timestamp
      * @type {string}
      * @memberof ContactImg
      */
-    'fetchedAt'?: string;
+    fetchedAt?: string;
 }
 /**
  * 
  * @export
  * @enum {string}
  */
-
 export enum ContactType {
     Individual = 'individual',
     Group = 'group',
@@ -498,7 +496,7 @@ export interface ContactsPatch {
      * @type {ContactsPatchPatch}
      * @memberof ContactsPatch
      */
-    'patch': ContactsPatchPatch;
+    patch: ContactsPatchPatch;
 }
 /**
  * 
@@ -511,31 +509,31 @@ export interface ContactsPatchPatch {
      * @type {string}
      * @memberof ContactsPatchPatch
      */
-    'name'?: string;
+    name?: string;
     /**
      * 
      * @type {string}
      * @memberof ContactsPatchPatch
      */
-    'phoneNumber'?: string;
+    phoneNumber?: string;
     /**
      * 
      * @type {string}
      * @memberof ContactsPatchPatch
      */
-    'email'?: string;
+    email?: string;
     /**
      * 
      * @type {string}
      * @memberof ContactsPatchPatch
      */
-    'assignee'?: string | null;
+    assignee?: string | null;
     /**
      * 
      * @type {Array<ContactsPatchPatchTags>}
      * @memberof ContactsPatchPatch
      */
-    'tags'?: Array<ContactsPatchPatchTags>;
+    tags?: Array<ContactsPatchPatchTags>;
 }
 /**
  * 
@@ -548,13 +546,13 @@ export interface ContactsPatchPatchTags {
      * @type {string}
      * @memberof ContactsPatchPatchTags
      */
-    'name': string;
+    name: string;
     /**
      * 
      * @type {boolean}
      * @memberof ContactsPatchPatchTags
      */
-    'remove'?: boolean;
+    remove?: boolean;
 }
 /**
  * 
@@ -567,7 +565,7 @@ export interface ContactsPost {
      * @type {Array<ContactsPostContacts>}
      * @memberof ContactsPost
      */
-    'contacts': Array<ContactsPostContacts>;
+    contacts: Array<ContactsPostContacts>;
 }
 /**
  * 
@@ -580,25 +578,25 @@ export interface ContactsPostContacts {
      * @type {string}
      * @memberof ContactsPostContacts
      */
-    'name': string | null;
+    name: string | null;
     /**
      * The phone number of the contact
      * @type {string}
      * @memberof ContactsPostContacts
      */
-    'phoneNumber': string;
+    phoneNumber: string;
     /**
      * The email of the contact
      * @type {string}
      * @memberof ContactsPostContacts
      */
-    'email'?: string;
+    email?: string;
     /**
      * Tags to set on this contact. These tags don\'t have to exist on the DB beforehand
      * @type {Array<string>}
      * @memberof ContactsPostContacts
      */
-    'tags'?: Array<string> | null;
+    tags?: Array<string> | null;
 }
 /**
  * 
@@ -611,25 +609,25 @@ export interface DataModel {
      * @type {string}
      * @memberof DataModel
      */
-    'fromDate': string;
+    fromDate: string;
     /**
      * 
      * @type {DataModelInner}
      * @memberof DataModel
      */
-    'messagesSent': DataModelInner;
+    messagesSent: DataModelInner;
     /**
      * 
      * @type {DataModelInner}
      * @memberof DataModel
      */
-    'tasksCompleted': DataModelInner;
+    tasksCompleted: DataModelInner;
     /**
      * 
      * @type {DataModelInner}
      * @memberof DataModel
      */
-    'tasksAdded': DataModelInner;
+    tasksAdded: DataModelInner;
 }
 /**
  * 
@@ -642,13 +640,13 @@ export interface DataModelInner {
      * @type {Array<object>}
      * @memberof DataModelInner
      */
-    'byUserId': Array<object>;
+    byUserId: Array<object>;
     /**
      * 
      * @type {Array<object>}
      * @memberof DataModelInner
      */
-    'byChatId'?: Array<object>;
+    byChatId?: Array<object>;
 }
 /**
  * @type GroupAction
@@ -667,7 +665,7 @@ export interface GroupActionOneOf {
      * @type {Array<string>}
      * @memberof GroupActionOneOf
      */
-    'add': Array<string>;
+    add: Array<string>;
 }
 /**
  * 
@@ -680,7 +678,7 @@ export interface GroupActionOneOf1 {
      * @type {Array<string>}
      * @memberof GroupActionOneOf1
      */
-    'remove': Array<string>;
+    remove: Array<string>;
 }
 /**
  * 
@@ -693,7 +691,7 @@ export interface GroupActionOneOf2 {
      * @type {Array<string>}
      * @memberof GroupActionOneOf2
      */
-    'promote': Array<string>;
+    promote: Array<string>;
 }
 /**
  * 
@@ -706,7 +704,7 @@ export interface GroupActionOneOf3 {
      * @type {Array<string>}
      * @memberof GroupActionOneOf3
      */
-    'demote': Array<string>;
+    demote: Array<string>;
 }
 /**
  * 
@@ -719,13 +717,13 @@ export interface GroupCreate {
      * @type {string}
      * @memberof GroupCreate
      */
-    'name': string;
+    name: string;
     /**
      * 
      * @type {Array<string>}
      * @memberof GroupCreate
      */
-    'participants': Array<string>;
+    participants: Array<string>;
 }
 /**
  * 
@@ -738,55 +736,55 @@ export interface GroupMetadata {
      * @type {string}
      * @memberof GroupMetadata
      */
-    'id': string;
+    id: string;
     /**
      * 
      * @type {string}
      * @memberof GroupMetadata
      */
-    'accountId': string;
+    accountId: string;
     /**
      * An ISO formatted timestamp
      * @type {string}
      * @memberof GroupMetadata
      */
-    'createdAt': string;
+    createdAt: string;
     /**
      * 
      * @type {string}
      * @memberof GroupMetadata
      */
-    'ownerId'?: string | null;
+    ownerId?: string | null;
     /**
      * 
      * @type {Contact}
      * @memberof GroupMetadata
      */
-    'owner'?: Contact;
+    owner?: Contact;
     /**
      * 
      * @type {string}
      * @memberof GroupMetadata
      */
-    'description': string | null;
+    description: string | null;
     /**
      * is set when the group only allows admins to change group settings
      * @type {boolean}
      * @memberof GroupMetadata
      */
-    'restrict': boolean;
+    restrict: boolean;
     /**
      * is set when the group only allows admins to write messages
      * @type {boolean}
      * @memberof GroupMetadata
      */
-    'announce': boolean;
+    announce: boolean;
     /**
      * 
      * @type {Array<GroupParticipant>}
      * @memberof GroupMetadata
      */
-    'participants': Array<GroupParticipant>;
+    participants: Array<GroupParticipant>;
 }
 /**
  * 
@@ -799,13 +797,13 @@ export interface GroupParticipant {
      * @type {Contact}
      * @memberof GroupParticipant
      */
-    'contact': Contact;
+    contact: Contact;
     /**
      * 
      * @type {string}
      * @memberof GroupParticipant
      */
-    'admin'?: GroupParticipantAdminEnum;
+    admin?: GroupParticipantAdminEnum;
 }
 
 /**
@@ -828,13 +826,13 @@ export interface InlineObject {
      * @type {AccountType}
      * @memberof InlineObject
      */
-    'type': AccountType;
+    type: AccountType;
     /**
      * 
      * @type {string}
      * @memberof InlineObject
      */
-    'nickname'?: string;
+    nickname?: string;
 }
 /**
  * 
@@ -847,31 +845,31 @@ export interface InlineObject1 {
      * @type {boolean}
      * @memberof InlineObject1
      */
-    'resolved'?: boolean;
+    resolved?: boolean;
     /**
      * 
      * @type {string}
      * @memberof InlineObject1
      */
-    'text'?: string;
+    text?: string;
     /**
      * 
      * @type {Array<MessageAttachment>}
      * @memberof InlineObject1
      */
-    'attachments'?: Array<MessageAttachment>;
+    attachments?: Array<MessageAttachment>;
     /**
      * 
      * @type {Array<string>}
      * @memberof InlineObject1
      */
-    'mentions'?: Array<string>;
+    mentions?: Array<string>;
     /**
      * An ISO formatted timestamp
      * @type {string}
      * @memberof InlineObject1
      */
-    'timestamp'?: string;
+    timestamp?: string;
 }
 /**
  * 
@@ -884,7 +882,7 @@ export interface InlineResponse200 {
      * @type {Array<Account>}
      * @memberof InlineResponse200
      */
-    'accounts': Array<Account>;
+    accounts: Array<Account>;
 }
 /**
  * 
@@ -897,7 +895,7 @@ export interface InlineResponse2001 {
      * @type {boolean}
      * @memberof InlineResponse2001
      */
-    'success': boolean;
+    success: boolean;
 }
 /**
  * 
@@ -910,19 +908,19 @@ export interface InlineResponse2002 {
      * @type {string}
      * @memberof InlineResponse2002
      */
-    'nextPage'?: string;
+    nextPage?: string;
     /**
      * number of total unread chats given the filter
      * @type {number}
      * @memberof InlineResponse2002
      */
-    'unreadChatCount'?: number;
+    unreadChatCount?: number;
     /**
      * 
      * @type {Array<Chat>}
      * @memberof InlineResponse2002
      */
-    'chats': Array<Chat>;
+    chats: Array<Chat>;
 }
 /**
  * 
@@ -935,7 +933,7 @@ export interface InlineResponse2003 {
      * @type {string}
      * @memberof InlineResponse2003
      */
-    'url': string | null;
+    url: string | null;
 }
 /**
  * 
@@ -948,13 +946,13 @@ export interface InlineResponse2004 {
      * @type {string}
      * @memberof InlineResponse2004
      */
-    'nextPage'?: string;
+    nextPage?: string;
     /**
      * 
      * @type {Array<Message>}
      * @memberof InlineResponse2004
      */
-    'messages': Array<Message>;
+    messages: Array<Message>;
 }
 /**
  * 
@@ -967,19 +965,19 @@ export interface InlineResponse2005 {
      * @type {number}
      * @memberof InlineResponse2005
      */
-    'nextPage'?: number;
+    nextPage?: number;
     /**
      * 
      * @type {Array<Message>}
      * @memberof InlineResponse2005
      */
-    'messages': Array<Message>;
+    messages: Array<Message>;
     /**
      * 
      * @type {Array<Chat>}
      * @memberof InlineResponse2005
      */
-    'chats'?: Array<Chat>;
+    chats?: Array<Chat>;
 }
 /**
  * 
@@ -992,7 +990,7 @@ export interface InlineResponse2006 {
      * @type {string}
      * @memberof InlineResponse2006
      */
-    'inviteCode': string;
+    inviteCode: string;
 }
 /**
  * 
@@ -1005,19 +1003,19 @@ export interface InlineResponse2007 {
      * @type {number}
      * @memberof InlineResponse2007
      */
-    'totalCount'?: number;
+    totalCount?: number;
     /**
      * 
      * @type {Array<Contact>}
      * @memberof InlineResponse2007
      */
-    'contacts': Array<Contact>;
+    contacts: Array<Contact>;
     /**
      * 
      * @type {string}
      * @memberof InlineResponse2007
      */
-    'nextPage': string | null;
+    nextPage: string | null;
 }
 /**
  * 
@@ -1030,7 +1028,7 @@ export interface InlineResponse2008 {
      * @type {Array<Tag>}
      * @memberof InlineResponse2008
      */
-    'tags': Array<Tag>;
+    tags: Array<Tag>;
 }
 /**
  * 
@@ -1043,109 +1041,109 @@ export interface Message {
      * @type {string}
      * @memberof Message
      */
-    'chatId': string;
+    chatId: string;
     /**
      * 
      * @type {string}
      * @memberof Message
      */
-    'accountId': string;
+    accountId: string;
     /**
      * 
      * @type {string}
      * @memberof Message
      */
-    'id': string;
+    id: string;
     /**
      * 
      * @type {boolean}
      * @memberof Message
      */
-    'fromMe': boolean;
+    fromMe: boolean;
     /**
      * The contact that sent the message (applicable for groups)
      * @type {string}
      * @memberof Message
      */
-    'senderContactId'?: string | null;
+    senderContactId?: string | null;
     /**
      * 
      * @type {MessageAllOfSender}
      * @memberof Message
      */
-    'sender'?: MessageAllOfSender | null;
+    sender?: MessageAllOfSender | null;
     /**
      * An ISO formatted timestamp
      * @type {string}
      * @memberof Message
      */
-    'timestamp': string;
+    timestamp: string;
     /**
      * 
      * @type {MessageStatus}
      * @memberof Message
      */
-    'status'?: MessageStatus;
+    status?: MessageStatus;
     /**
      * 
      * @type {{ [key: string]: any; }}
      * @memberof Message
      */
-    'error'?: { [key: string]: any; } | null;
+    error?: { [key: string]: any; } | null;
     /**
      * Only for notes, user ID of the person who resolved the note
      * @type {string}
      * @memberof Message
      */
-    'resolvedBy'?: string | null;
+    resolvedBy?: string | null;
     /**
      * An ISO formatted timestamp
      * @type {string}
      * @memberof Message
      */
-    'resolvedAt'?: string | null;
+    resolvedAt?: string | null;
     /**
      * 
      * @type {MiscOptions}
      * @memberof Message
      */
-    'miscOptions'?: MiscOptions;
+    miscOptions?: MiscOptions;
     /**
      * 
      * @type {Array<string>}
      * @memberof Message
      */
-    'mentions'?: Array<string>;
+    mentions?: Array<string>;
     /**
      * 
      * @type {string}
      * @memberof Message
      */
-    'text': string | null;
+    text: string | null;
     /**
      * 
      * @type {QuotedMessage}
      * @memberof Message
      */
-    'quoted'?: QuotedMessage | null;
+    quoted?: QuotedMessage | null;
     /**
      * 
      * @type {MessageContentAction}
      * @memberof Message
      */
-    'action'?: MessageContentAction | null;
+    action?: MessageContentAction | null;
     /**
      * 
      * @type {Array<MessageAttachment>}
      * @memberof Message
      */
-    'attachments'?: Array<MessageAttachment>;
+    attachments?: Array<MessageAttachment>;
     /**
      * 
      * @type {Array<MessageContentButtons>}
      * @memberof Message
      */
-    'buttons'?: Array<MessageContentButtons> | null;
+    buttons?: Array<MessageContentButtons> | null;
 }
 /**
  * 
@@ -1158,73 +1156,73 @@ export interface MessageAllOf {
      * @type {string}
      * @memberof MessageAllOf
      */
-    'chatId': string;
+    chatId: string;
     /**
      * 
      * @type {string}
      * @memberof MessageAllOf
      */
-    'accountId': string;
+    accountId: string;
     /**
      * 
      * @type {string}
      * @memberof MessageAllOf
      */
-    'id': string;
+    id: string;
     /**
      * 
      * @type {boolean}
      * @memberof MessageAllOf
      */
-    'fromMe': boolean;
+    fromMe: boolean;
     /**
      * The contact that sent the message (applicable for groups)
      * @type {string}
      * @memberof MessageAllOf
      */
-    'senderContactId'?: string | null;
+    senderContactId?: string | null;
     /**
      * 
      * @type {MessageAllOfSender}
      * @memberof MessageAllOf
      */
-    'sender'?: MessageAllOfSender | null;
+    sender?: MessageAllOfSender | null;
     /**
      * An ISO formatted timestamp
      * @type {string}
      * @memberof MessageAllOf
      */
-    'timestamp': string;
+    timestamp: string;
     /**
      * 
      * @type {MessageStatus}
      * @memberof MessageAllOf
      */
-    'status'?: MessageStatus;
+    status?: MessageStatus;
     /**
      * 
      * @type {{ [key: string]: any; }}
      * @memberof MessageAllOf
      */
-    'error'?: { [key: string]: any; } | null;
+    error?: { [key: string]: any; } | null;
     /**
      * Only for notes, user ID of the person who resolved the note
      * @type {string}
      * @memberof MessageAllOf
      */
-    'resolvedBy'?: string | null;
+    resolvedBy?: string | null;
     /**
      * An ISO formatted timestamp
      * @type {string}
      * @memberof MessageAllOf
      */
-    'resolvedAt'?: string | null;
+    resolvedAt?: string | null;
     /**
      * 
      * @type {MiscOptions}
      * @memberof MessageAllOf
      */
-    'miscOptions'?: MiscOptions;
+    miscOptions?: MiscOptions;
 }
 /**
  * The user ID of the person that sent it
@@ -1237,7 +1235,7 @@ export interface MessageAllOfSender {
      * @type {string}
      * @memberof MessageAllOfSender
      */
-    'userId': string;
+    userId: string;
 }
 /**
  * 
@@ -1250,49 +1248,49 @@ export interface MessageAttachment {
      * @type {MessageAttachmentType}
      * @memberof MessageAttachment
      */
-    'type': MessageAttachmentType;
+    type: MessageAttachmentType;
     /**
      * 
      * @type {string}
      * @memberof MessageAttachment
      */
-    'mimetype': string;
+    mimetype: string;
     /**
      * 1. can be publicly hosted url,  2. or can be base64 encoded buffer. But make sure it starts with `data:;base64,` Note: the `contact` type only supports base64 encoded data 
      * @type {string}
      * @memberof MessageAttachment
      */
-    'url': string;
+    url: string;
     /**
      * thumbnail of sticker/video/image
      * @type {any}
      * @memberof MessageAttachment
      */
-    'jpegThumbnail'?: any;
+    jpegThumbnail?: any;
     /**
      * duration of audio/video message
      * @type {number}
      * @memberof MessageAttachment
      */
-    'seconds'?: number;
+    seconds?: number;
     /**
      * name of the doc message
      * @type {string}
      * @memberof MessageAttachment
      */
-    'filename'?: string;
+    filename?: string;
     /**
      * is this a gif
      * @type {boolean}
      * @memberof MessageAttachment
      */
-    'isGif'?: boolean;
+    isGif?: boolean;
     /**
      * 
      * @type {MessageAttachmentDecryption}
      * @memberof MessageAttachment
      */
-    'decryption'?: MessageAttachmentDecryption;
+    decryption?: MessageAttachmentDecryption;
 }
 /**
  * 
@@ -1305,13 +1303,13 @@ export interface MessageAttachmentDecryption {
      * @type {{ [key: string]: string; }}
      * @memberof MessageAttachmentDecryption
      */
-    'keys'?: { [key: string]: string; };
+    keys?: { [key: string]: string; };
     /**
      * 
      * @type {string}
      * @memberof MessageAttachmentDecryption
      */
-    'algorithm': MessageAttachmentDecryptionAlgorithmEnum;
+    algorithm: MessageAttachmentDecryptionAlgorithmEnum;
 }
 
 /**
@@ -1327,7 +1325,6 @@ export enum MessageAttachmentDecryptionAlgorithmEnum {
  * @export
  * @enum {string}
  */
-
 export enum MessageAttachmentType {
     Image = 'image',
     Video = 'video',
@@ -1349,67 +1346,67 @@ export interface MessageCompose {
      * @type {string}
      * @memberof MessageCompose
      */
-    'id'?: string;
+    id?: string;
     /**
      * 
      * @type {string}
      * @memberof MessageCompose
      */
-    'status': MessageComposeStatusEnum;
+    status: MessageComposeStatusEnum;
     /**
      * An ISO formatted timestamp
      * @type {string}
      * @memberof MessageCompose
      */
-    'timestamp'?: string;
+    timestamp?: string;
     /**
      * 
      * @type {MiscOptions}
      * @memberof MessageCompose
      */
-    'miscOptions'?: MiscOptions;
+    miscOptions?: MiscOptions;
     /**
      * parameters to replace in text
      * @type {{ [key: string]: any; }}
      * @memberof MessageCompose
      */
-    'parameters'?: { [key: string]: any; };
+    parameters?: { [key: string]: any; };
     /**
      * 
      * @type {Array<string>}
      * @memberof MessageCompose
      */
-    'mentions'?: Array<string>;
+    mentions?: Array<string>;
     /**
      * 
      * @type {string}
      * @memberof MessageCompose
      */
-    'text': string | null;
+    text: string | null;
     /**
      * 
      * @type {QuotedMessage}
      * @memberof MessageCompose
      */
-    'quoted'?: QuotedMessage | null;
+    quoted?: QuotedMessage | null;
     /**
      * 
      * @type {MessageContentAction}
      * @memberof MessageCompose
      */
-    'action'?: MessageContentAction | null;
+    action?: MessageContentAction | null;
     /**
      * 
      * @type {Array<MessageAttachment>}
      * @memberof MessageCompose
      */
-    'attachments'?: Array<MessageAttachment>;
+    attachments?: Array<MessageAttachment>;
     /**
      * 
      * @type {Array<MessageContentButtons>}
      * @memberof MessageCompose
      */
-    'buttons'?: Array<MessageContentButtons> | null;
+    buttons?: Array<MessageContentButtons> | null;
 }
 
 /**
@@ -1432,31 +1429,31 @@ export interface MessageComposeAllOf {
      * @type {string}
      * @memberof MessageComposeAllOf
      */
-    'id'?: string;
+    id?: string;
     /**
      * 
      * @type {string}
      * @memberof MessageComposeAllOf
      */
-    'status': MessageComposeAllOfStatusEnum;
+    status: MessageComposeAllOfStatusEnum;
     /**
      * An ISO formatted timestamp
      * @type {string}
      * @memberof MessageComposeAllOf
      */
-    'timestamp'?: string;
+    timestamp?: string;
     /**
      * 
      * @type {MiscOptions}
      * @memberof MessageComposeAllOf
      */
-    'miscOptions'?: MiscOptions;
+    miscOptions?: MiscOptions;
     /**
      * parameters to replace in text
      * @type {{ [key: string]: any; }}
      * @memberof MessageComposeAllOf
      */
-    'parameters'?: { [key: string]: any; };
+    parameters?: { [key: string]: any; };
 }
 
 /**
@@ -1479,37 +1476,37 @@ export interface MessageContent {
      * @type {Array<string>}
      * @memberof MessageContent
      */
-    'mentions'?: Array<string>;
+    mentions?: Array<string>;
     /**
      * 
      * @type {string}
      * @memberof MessageContent
      */
-    'text': string | null;
+    text: string | null;
     /**
      * 
      * @type {QuotedMessage}
      * @memberof MessageContent
      */
-    'quoted'?: QuotedMessage | null;
+    quoted?: QuotedMessage | null;
     /**
      * 
      * @type {MessageContentAction}
      * @memberof MessageContent
      */
-    'action'?: MessageContentAction | null;
+    action?: MessageContentAction | null;
     /**
      * 
      * @type {Array<MessageAttachment>}
      * @memberof MessageContent
      */
-    'attachments'?: Array<MessageAttachment>;
+    attachments?: Array<MessageAttachment>;
     /**
      * 
      * @type {Array<MessageContentButtons>}
      * @memberof MessageContent
      */
-    'buttons'?: Array<MessageContentButtons> | null;
+    buttons?: Array<MessageContentButtons> | null;
 }
 /**
  * 
@@ -1522,13 +1519,13 @@ export interface MessageContentAction {
      * @type {string}
      * @memberof MessageContentAction
      */
-    'type': string;
+    type: string;
     /**
      * 
      * @type {Array<string>}
      * @memberof MessageContentAction
      */
-    'parameters'?: Array<string>;
+    parameters?: Array<string>;
 }
 /**
  * 
@@ -1541,20 +1538,19 @@ export interface MessageContentButtons {
      * @type {string}
      * @memberof MessageContentButtons
      */
-    'id': string;
+    id: string;
     /**
      * 
      * @type {string}
      * @memberof MessageContentButtons
      */
-    'text': string;
+    text: string;
 }
 /**
  * 
  * @export
  * @enum {string}
  */
-
 export enum MessageStatus {
     Error = 'error',
     Pending = 'pending',
@@ -1575,32 +1571,31 @@ export interface MiscOptions {
      * @type {boolean}
      * @memberof MiscOptions
      */
-    'withTyping'?: boolean;
+    withTyping?: boolean;
     /**
      * 
      * @type {number}
      * @memberof MiscOptions
      */
-    'forwardCount'?: number;
+    forwardCount?: number;
     /**
      * Adds random whitespace to produce a distinct message
      * @type {boolean}
      * @memberof MiscOptions
      */
-    'randomizeMessage'?: boolean;
+    randomizeMessage?: boolean;
     /**
      * the ID of the button clicked
      * @type {string}
      * @memberof MiscOptions
      */
-    'buttonReplyId'?: string;
+    buttonReplyId?: string;
 }
 /**
  * 
  * @export
  * @enum {string}
  */
-
 export enum PresenceType {
     Available = 'available',
     Unavailable = 'unavailable',
@@ -1619,38 +1614,37 @@ export interface QuotedMessage {
      * @type {string}
      * @memberof QuotedMessage
      */
-    'chatId': string;
+    chatId: string;
     /**
      * 
      * @type {string}
      * @memberof QuotedMessage
      */
-    'id': string;
+    id: string;
     /**
      * 
      * @type {string}
      * @memberof QuotedMessage
      */
-    'senderContactId'?: string;
+    senderContactId?: string;
     /**
      * 
      * @type {string}
      * @memberof QuotedMessage
      */
-    'text'?: string | null;
+    text?: string | null;
     /**
      * 
      * @type {string}
      * @memberof QuotedMessage
      */
-    'jpegThumbnail'?: string;
+    jpegThumbnail?: string;
 }
 /**
  * 
  * @export
  * @enum {string}
  */
-
 export enum State {
     Open = 'open',
     Connecting = 'connecting',
@@ -1668,13 +1662,13 @@ export interface Tag {
      * @type {string}
      * @memberof Tag
      */
-    'name': string;
+    name: string;
     /**
      * The filters for a dynamic tag
      * @type {object}
      * @memberof Tag
      */
-    'filters'?: object | null;
+    filters?: object | null;
 }
 
 /**
@@ -1690,7 +1684,7 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsClose: async (accountId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        accountsClose: async (accountId: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('accountsClose', 'accountId', accountId)
             const localVarPath = `/accounts/{accountId}/close`
@@ -1712,7 +1706,7 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -1728,7 +1722,7 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsDelete: async (accountId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        accountsDelete: async (accountId: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('accountsDelete', 'accountId', accountId)
             const localVarPath = `/accounts/{accountId}`
@@ -1750,7 +1744,7 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -1766,7 +1760,7 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsGet: async (q?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        accountsGet: async (q?: string, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/accounts`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1789,7 +1783,7 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -1805,7 +1799,7 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsLogout: async (accountId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        accountsLogout: async (accountId: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('accountsLogout', 'accountId', accountId)
             const localVarPath = `/accounts/{accountId}/logout`
@@ -1827,7 +1821,7 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -1843,7 +1837,7 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsOpen: async (accountId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        accountsOpen: async (accountId: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('accountsOpen', 'accountId', accountId)
             const localVarPath = `/accounts/{accountId}/open`
@@ -1865,7 +1859,7 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -1882,7 +1876,7 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsPatch: async (accountId: string, accountsPatchRequest?: AccountsPatchRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        accountsPatch: async (accountId: string, accountsPatchRequest?: AccountsPatchRequest, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('accountsPatch', 'accountId', accountId)
             const localVarPath = `/accounts/{accountId}`
@@ -1906,7 +1900,7 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(accountsPatchRequest, localVarRequestOptions, configuration)
@@ -1923,7 +1917,7 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsPost: async (inlineObject?: InlineObject, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        accountsPost: async (inlineObject?: InlineObject, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/accounts`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1944,7 +1938,7 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(inlineObject, localVarRequestOptions, configuration)
@@ -1971,7 +1965,7 @@ export const AccountApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsClose(accountId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async accountsClose(accountId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsClose(accountId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1982,7 +1976,7 @@ export const AccountApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsDelete(accountId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+        async accountsDelete(accountId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsDelete(accountId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -1993,7 +1987,7 @@ export const AccountApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsGet(q?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+        async accountsGet(q?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsGet(q, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -2004,7 +1998,7 @@ export const AccountApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsLogout(accountId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+        async accountsLogout(accountId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsLogout(accountId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -2015,7 +2009,7 @@ export const AccountApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsOpen(accountId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async accountsOpen(accountId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsOpen(accountId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -2027,7 +2021,7 @@ export const AccountApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsPatch(accountId: string, accountsPatchRequest?: AccountsPatchRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+        async accountsPatch(accountId: string, accountsPatchRequest?: AccountsPatchRequest, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsPatch(accountId, accountsPatchRequest, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -2038,7 +2032,7 @@ export const AccountApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsPost(inlineObject?: InlineObject, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Account>> {
+        async accountsPost(inlineObject?: InlineObject, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Account>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.accountsPost(inlineObject, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -2141,7 +2135,7 @@ export class AccountApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AccountApi
      */
-    public accountsClose(accountId: string, options?: AxiosRequestConfig) {
+    public accountsClose(accountId: string, options?: any) {
         return AccountApiFp(this.configuration).accountsClose(accountId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -2153,7 +2147,7 @@ export class AccountApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AccountApi
      */
-    public accountsDelete(accountId: string, options?: AxiosRequestConfig) {
+    public accountsDelete(accountId: string, options?: any) {
         return AccountApiFp(this.configuration).accountsDelete(accountId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -2165,7 +2159,7 @@ export class AccountApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AccountApi
      */
-    public accountsGet(q?: string, options?: AxiosRequestConfig) {
+    public accountsGet(q?: string, options?: any) {
         return AccountApiFp(this.configuration).accountsGet(q, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -2177,7 +2171,7 @@ export class AccountApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AccountApi
      */
-    public accountsLogout(accountId: string, options?: AxiosRequestConfig) {
+    public accountsLogout(accountId: string, options?: any) {
         return AccountApiFp(this.configuration).accountsLogout(accountId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -2189,7 +2183,7 @@ export class AccountApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AccountApi
      */
-    public accountsOpen(accountId: string, options?: AxiosRequestConfig) {
+    public accountsOpen(accountId: string, options?: any) {
         return AccountApiFp(this.configuration).accountsOpen(accountId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -2202,7 +2196,7 @@ export class AccountApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AccountApi
      */
-    public accountsPatch(accountId: string, accountsPatchRequest?: AccountsPatchRequest, options?: AxiosRequestConfig) {
+    public accountsPatch(accountId: string, accountsPatchRequest?: AccountsPatchRequest, options?: any) {
         return AccountApiFp(this.configuration).accountsPatch(accountId, accountsPatchRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -2214,7 +2208,7 @@ export class AccountApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AccountApi
      */
-    public accountsPost(inlineObject?: InlineObject, options?: AxiosRequestConfig) {
+    public accountsPost(inlineObject?: InlineObject, options?: any) {
         return AccountApiFp(this.configuration).accountsPost(inlineObject, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -2247,7 +2241,7 @@ export const ChatsApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        chatsGet: async (count?: number, page?: string, archive?: boolean, unread?: boolean, hasPendingMessage?: boolean, mentioned?: string, hasUnsolvedNote?: boolean, lastMessageFromMe?: boolean, tags?: Array<string>, contacts?: Array<string>, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', returnUnreadChatCount?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        chatsGet: async (count?: number, page?: string, archive?: boolean, unread?: boolean, hasPendingMessage?: boolean, mentioned?: string, hasUnsolvedNote?: boolean, lastMessageFromMe?: boolean, tags?: Array<string>, contacts?: Array<string>, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', returnUnreadChatCount?: boolean, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/chats`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2326,7 +2320,7 @@ export const ChatsApiAxiosParamCreator = function (configuration?: Configuration
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -2344,7 +2338,7 @@ export const ChatsApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        chatsPatch: async (accountId: string, id: string, chatAction?: ChatAction, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        chatsPatch: async (accountId: string, id: string, chatAction?: ChatAction, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('chatsPatch', 'accountId', accountId)
             // verify required parameter 'id' is not null or undefined
@@ -2371,7 +2365,7 @@ export const ChatsApiAxiosParamCreator = function (configuration?: Configuration
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(chatAction, localVarRequestOptions, configuration)
@@ -2390,7 +2384,7 @@ export const ChatsApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        chatsPresencePost: async (accountId: string, id: string, presence: PresenceType, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        chatsPresencePost: async (accountId: string, id: string, presence: PresenceType, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('chatsPresencePost', 'accountId', accountId)
             // verify required parameter 'id' is not null or undefined
@@ -2421,7 +2415,7 @@ export const ChatsApiAxiosParamCreator = function (configuration?: Configuration
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -2461,7 +2455,7 @@ export const ChatsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async chatsGet(count?: number, page?: string, archive?: boolean, unread?: boolean, hasPendingMessage?: boolean, mentioned?: string, hasUnsolvedNote?: boolean, lastMessageFromMe?: boolean, tags?: Array<string>, contacts?: Array<string>, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', returnUnreadChatCount?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
+        async chatsGet(count?: number, page?: string, archive?: boolean, unread?: boolean, hasPendingMessage?: boolean, mentioned?: string, hasUnsolvedNote?: boolean, lastMessageFromMe?: boolean, tags?: Array<string>, contacts?: Array<string>, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', returnUnreadChatCount?: boolean, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.chatsGet(count, page, archive, unread, hasPendingMessage, mentioned, hasUnsolvedNote, lastMessageFromMe, tags, contacts, q, assignee, accountId, type, returnUnreadChatCount, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -2474,7 +2468,7 @@ export const ChatsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async chatsPatch(accountId: string, id: string, chatAction?: ChatAction, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Chat>> {
+        async chatsPatch(accountId: string, id: string, chatAction?: ChatAction, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Chat>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.chatsPatch(accountId, id, chatAction, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -2487,7 +2481,7 @@ export const ChatsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async chatsPresencePost(accountId: string, id: string, presence: PresenceType, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+        async chatsPresencePost(accountId: string, id: string, presence: PresenceType, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.chatsPresencePost(accountId, id, presence, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -2581,7 +2575,7 @@ export class ChatsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChatsApi
      */
-    public chatsGet(count?: number, page?: string, archive?: boolean, unread?: boolean, hasPendingMessage?: boolean, mentioned?: string, hasUnsolvedNote?: boolean, lastMessageFromMe?: boolean, tags?: Array<string>, contacts?: Array<string>, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', returnUnreadChatCount?: boolean, options?: AxiosRequestConfig) {
+    public chatsGet(count?: number, page?: string, archive?: boolean, unread?: boolean, hasPendingMessage?: boolean, mentioned?: string, hasUnsolvedNote?: boolean, lastMessageFromMe?: boolean, tags?: Array<string>, contacts?: Array<string>, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', returnUnreadChatCount?: boolean, options?: any) {
         return ChatsApiFp(this.configuration).chatsGet(count, page, archive, unread, hasPendingMessage, mentioned, hasUnsolvedNote, lastMessageFromMe, tags, contacts, q, assignee, accountId, type, returnUnreadChatCount, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -2595,7 +2589,7 @@ export class ChatsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChatsApi
      */
-    public chatsPatch(accountId: string, id: string, chatAction?: ChatAction, options?: AxiosRequestConfig) {
+    public chatsPatch(accountId: string, id: string, chatAction?: ChatAction, options?: any) {
         return ChatsApiFp(this.configuration).chatsPatch(accountId, id, chatAction, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -2609,7 +2603,7 @@ export class ChatsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChatsApi
      */
-    public chatsPresencePost(accountId: string, id: string, presence: PresenceType, options?: AxiosRequestConfig) {
+    public chatsPresencePost(accountId: string, id: string, presence: PresenceType, options?: any) {
         return ChatsApiFp(this.configuration).chatsPresencePost(accountId, id, presence, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -2639,7 +2633,7 @@ export const ContactsApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        contactsDelete: async (tags?: Array<string>, notTags?: Array<string>, contacts?: Array<string>, notContacts?: Array<string>, minMessagesSent?: number, minMessagesRecv?: number, maxMessagesSent?: number, maxMessagesRecv?: number, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        contactsDelete: async (tags?: Array<string>, notTags?: Array<string>, contacts?: Array<string>, notContacts?: Array<string>, minMessagesSent?: number, minMessagesRecv?: number, maxMessagesSent?: number, maxMessagesRecv?: number, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/contacts`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2706,7 +2700,7 @@ export const ContactsApiAxiosParamCreator = function (configuration?: Configurat
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -2736,7 +2730,7 @@ export const ContactsApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        contactsGet: async (tags?: Array<string>, notTags?: Array<string>, contacts?: Array<string>, notContacts?: Array<string>, minMessagesSent?: number, minMessagesRecv?: number, maxMessagesSent?: number, maxMessagesRecv?: number, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', returnTotalCount?: boolean, page?: string, count?: number | string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        contactsGet: async (tags?: Array<string>, notTags?: Array<string>, contacts?: Array<string>, notContacts?: Array<string>, minMessagesSent?: number, minMessagesRecv?: number, maxMessagesSent?: number, maxMessagesRecv?: number, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', returnTotalCount?: boolean, page?: string, count?: number | string, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/contacts`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2815,7 +2809,7 @@ export const ContactsApiAxiosParamCreator = function (configuration?: Configurat
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -2832,7 +2826,7 @@ export const ContactsApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        contactsImageGet: async (id: string, accountId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        contactsImageGet: async (id: string, accountId: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('contactsImageGet', 'id', id)
             // verify required parameter 'accountId' is not null or undefined
@@ -2857,7 +2851,7 @@ export const ContactsApiAxiosParamCreator = function (configuration?: Configurat
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -2885,7 +2879,7 @@ export const ContactsApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        contactsPatch: async (tags?: Array<string>, notTags?: Array<string>, contacts?: Array<string>, notContacts?: Array<string>, minMessagesSent?: number, minMessagesRecv?: number, maxMessagesSent?: number, maxMessagesRecv?: number, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', contactsPatch?: ContactsPatch, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        contactsPatch: async (tags?: Array<string>, notTags?: Array<string>, contacts?: Array<string>, notContacts?: Array<string>, minMessagesSent?: number, minMessagesRecv?: number, maxMessagesSent?: number, maxMessagesRecv?: number, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', contactsPatch?: ContactsPatch, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/contacts`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2954,7 +2948,7 @@ export const ContactsApiAxiosParamCreator = function (configuration?: Configurat
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(contactsPatch, localVarRequestOptions, configuration)
@@ -2971,7 +2965,7 @@ export const ContactsApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        contactsPost: async (contactsPost?: ContactsPost, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        contactsPost: async (contactsPost?: ContactsPost, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/contacts/upsert`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2992,7 +2986,7 @@ export const ContactsApiAxiosParamCreator = function (configuration?: Configurat
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(contactsPost, localVarRequestOptions, configuration)
@@ -3030,7 +3024,7 @@ export const ContactsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async contactsDelete(tags?: Array<string>, notTags?: Array<string>, contacts?: Array<string>, notContacts?: Array<string>, minMessagesSent?: number, minMessagesRecv?: number, maxMessagesSent?: number, maxMessagesRecv?: number, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+        async contactsDelete(tags?: Array<string>, notTags?: Array<string>, contacts?: Array<string>, notContacts?: Array<string>, minMessagesSent?: number, minMessagesRecv?: number, maxMessagesSent?: number, maxMessagesRecv?: number, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.contactsDelete(tags, notTags, contacts, notContacts, minMessagesSent, minMessagesRecv, maxMessagesSent, maxMessagesRecv, q, assignee, accountId, type, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3055,7 +3049,7 @@ export const ContactsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async contactsGet(tags?: Array<string>, notTags?: Array<string>, contacts?: Array<string>, notContacts?: Array<string>, minMessagesSent?: number, minMessagesRecv?: number, maxMessagesSent?: number, maxMessagesRecv?: number, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', returnTotalCount?: boolean, page?: string, count?: number | string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2007>> {
+        async contactsGet(tags?: Array<string>, notTags?: Array<string>, contacts?: Array<string>, notContacts?: Array<string>, minMessagesSent?: number, minMessagesRecv?: number, maxMessagesSent?: number, maxMessagesRecv?: number, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', returnTotalCount?: boolean, page?: string, count?: number | string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2007>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.contactsGet(tags, notTags, contacts, notContacts, minMessagesSent, minMessagesRecv, maxMessagesSent, maxMessagesRecv, q, assignee, accountId, type, returnTotalCount, page, count, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3067,7 +3061,7 @@ export const ContactsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async contactsImageGet(id: string, accountId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
+        async contactsImageGet(id: string, accountId: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.contactsImageGet(id, accountId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3090,7 +3084,7 @@ export const ContactsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async contactsPatch(tags?: Array<string>, notTags?: Array<string>, contacts?: Array<string>, notContacts?: Array<string>, minMessagesSent?: number, minMessagesRecv?: number, maxMessagesSent?: number, maxMessagesRecv?: number, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', contactsPatch?: ContactsPatch, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+        async contactsPatch(tags?: Array<string>, notTags?: Array<string>, contacts?: Array<string>, notContacts?: Array<string>, minMessagesSent?: number, minMessagesRecv?: number, maxMessagesSent?: number, maxMessagesRecv?: number, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', contactsPatch?: ContactsPatch, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.contactsPatch(tags, notTags, contacts, notContacts, minMessagesSent, minMessagesRecv, maxMessagesSent, maxMessagesRecv, q, assignee, accountId, type, contactsPatch, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3101,7 +3095,7 @@ export const ContactsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async contactsPost(contactsPost?: ContactsPost, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+        async contactsPost(contactsPost?: ContactsPost, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.contactsPost(contactsPost, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3232,7 +3226,7 @@ export class ContactsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ContactsApi
      */
-    public contactsDelete(tags?: Array<string>, notTags?: Array<string>, contacts?: Array<string>, notContacts?: Array<string>, minMessagesSent?: number, minMessagesRecv?: number, maxMessagesSent?: number, maxMessagesRecv?: number, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', options?: AxiosRequestConfig) {
+    public contactsDelete(tags?: Array<string>, notTags?: Array<string>, contacts?: Array<string>, notContacts?: Array<string>, minMessagesSent?: number, minMessagesRecv?: number, maxMessagesSent?: number, maxMessagesRecv?: number, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', options?: any) {
         return ContactsApiFp(this.configuration).contactsDelete(tags, notTags, contacts, notContacts, minMessagesSent, minMessagesRecv, maxMessagesSent, maxMessagesRecv, q, assignee, accountId, type, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -3258,7 +3252,7 @@ export class ContactsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ContactsApi
      */
-    public contactsGet(tags?: Array<string>, notTags?: Array<string>, contacts?: Array<string>, notContacts?: Array<string>, minMessagesSent?: number, minMessagesRecv?: number, maxMessagesSent?: number, maxMessagesRecv?: number, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', returnTotalCount?: boolean, page?: string, count?: number | string, options?: AxiosRequestConfig) {
+    public contactsGet(tags?: Array<string>, notTags?: Array<string>, contacts?: Array<string>, notContacts?: Array<string>, minMessagesSent?: number, minMessagesRecv?: number, maxMessagesSent?: number, maxMessagesRecv?: number, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', returnTotalCount?: boolean, page?: string, count?: number | string, options?: any) {
         return ContactsApiFp(this.configuration).contactsGet(tags, notTags, contacts, notContacts, minMessagesSent, minMessagesRecv, maxMessagesSent, maxMessagesRecv, q, assignee, accountId, type, returnTotalCount, page, count, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -3271,7 +3265,7 @@ export class ContactsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ContactsApi
      */
-    public contactsImageGet(id: string, accountId: string, options?: AxiosRequestConfig) {
+    public contactsImageGet(id: string, accountId: string, options?: any) {
         return ContactsApiFp(this.configuration).contactsImageGet(id, accountId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -3295,7 +3289,7 @@ export class ContactsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ContactsApi
      */
-    public contactsPatch(tags?: Array<string>, notTags?: Array<string>, contacts?: Array<string>, notContacts?: Array<string>, minMessagesSent?: number, minMessagesRecv?: number, maxMessagesSent?: number, maxMessagesRecv?: number, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', contactsPatch?: ContactsPatch, options?: AxiosRequestConfig) {
+    public contactsPatch(tags?: Array<string>, notTags?: Array<string>, contacts?: Array<string>, notContacts?: Array<string>, minMessagesSent?: number, minMessagesRecv?: number, maxMessagesSent?: number, maxMessagesRecv?: number, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', contactsPatch?: ContactsPatch, options?: any) {
         return ContactsApiFp(this.configuration).contactsPatch(tags, notTags, contacts, notContacts, minMessagesSent, minMessagesRecv, maxMessagesSent, maxMessagesRecv, q, assignee, accountId, type, contactsPatch, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -3307,7 +3301,7 @@ export class ContactsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ContactsApi
      */
-    public contactsPost(contactsPost?: ContactsPost, options?: AxiosRequestConfig) {
+    public contactsPost(contactsPost?: ContactsPost, options?: any) {
         return ContactsApiFp(this.configuration).contactsPost(contactsPost, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -3326,7 +3320,7 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        dataGet: async (accountId?: Array<string>, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        dataGet: async (accountId?: Array<string>, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/data`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3349,7 +3343,7 @@ export const DataApiAxiosParamCreator = function (configuration?: Configuration)
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -3375,7 +3369,7 @@ export const DataApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async dataGet(accountId?: Array<string>, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataModel>> {
+        async dataGet(accountId?: Array<string>, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<DataModel>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.dataGet(accountId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3417,7 +3411,7 @@ export class DataApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof DataApi
      */
-    public dataGet(accountId?: Array<string>, options?: AxiosRequestConfig) {
+    public dataGet(accountId?: Array<string>, options?: any) {
         return DataApiFp(this.configuration).dataGet(accountId, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -3437,7 +3431,7 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        filesPost: async (mimetype: string, name: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        filesPost: async (mimetype: string, name: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'mimetype' is not null or undefined
             assertParamExists('filesPost', 'mimetype', mimetype)
             // verify required parameter 'name' is not null or undefined
@@ -3468,7 +3462,7 @@ export const FilesApiAxiosParamCreator = function (configuration?: Configuration
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -3495,7 +3489,7 @@ export const FilesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async filesPost(mimetype: string, name: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: any; }>> {
+        async filesPost(mimetype: string, name: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: any; }>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.filesPost(mimetype, name, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3539,7 +3533,7 @@ export class FilesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FilesApi
      */
-    public filesPost(mimetype: string, name: string, options?: AxiosRequestConfig) {
+    public filesPost(mimetype: string, name: string, options?: any) {
         return FilesApiFp(this.configuration).filesPost(mimetype, name, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -3560,7 +3554,7 @@ export const GroupsApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        groupsGet: async (accountId: string, id: string, forceRefresh?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        groupsGet: async (accountId: string, id: string, forceRefresh?: boolean, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('groupsGet', 'accountId', accountId)
             // verify required parameter 'id' is not null or undefined
@@ -3589,7 +3583,7 @@ export const GroupsApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -3606,7 +3600,7 @@ export const GroupsApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        groupsInviteCode: async (accountId: string, id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        groupsInviteCode: async (accountId: string, id: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('groupsInviteCode', 'accountId', accountId)
             // verify required parameter 'id' is not null or undefined
@@ -3631,7 +3625,7 @@ export const GroupsApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -3649,7 +3643,7 @@ export const GroupsApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        groupsJoin: async (accountId: string, id: string, code: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        groupsJoin: async (accountId: string, id: string, code: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('groupsJoin', 'accountId', accountId)
             // verify required parameter 'id' is not null or undefined
@@ -3680,7 +3674,7 @@ export const GroupsApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -3697,7 +3691,7 @@ export const GroupsApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        groupsLeave: async (accountId: string, id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        groupsLeave: async (accountId: string, id: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('groupsLeave', 'accountId', accountId)
             // verify required parameter 'id' is not null or undefined
@@ -3722,7 +3716,7 @@ export const GroupsApiAxiosParamCreator = function (configuration?: Configuratio
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -3740,7 +3734,7 @@ export const GroupsApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        groupsPatch: async (accountId: string, id: string, groupAction?: GroupAction, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        groupsPatch: async (accountId: string, id: string, groupAction?: GroupAction, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('groupsPatch', 'accountId', accountId)
             // verify required parameter 'id' is not null or undefined
@@ -3767,7 +3761,7 @@ export const GroupsApiAxiosParamCreator = function (configuration?: Configuratio
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(groupAction, localVarRequestOptions, configuration)
@@ -3785,7 +3779,7 @@ export const GroupsApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        groupsPost: async (accountId: string, groupCreate?: GroupCreate, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        groupsPost: async (accountId: string, groupCreate?: GroupCreate, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('groupsPost', 'accountId', accountId)
             const localVarPath = `/groups/{accountId}`
@@ -3809,7 +3803,7 @@ export const GroupsApiAxiosParamCreator = function (configuration?: Configuratio
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(groupCreate, localVarRequestOptions, configuration)
@@ -3838,7 +3832,7 @@ export const GroupsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async groupsGet(accountId: string, id: string, forceRefresh?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GroupMetadata>> {
+        async groupsGet(accountId: string, id: string, forceRefresh?: boolean, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GroupMetadata>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsGet(accountId, id, forceRefresh, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3850,7 +3844,7 @@ export const GroupsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async groupsInviteCode(accountId: string, id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2006>> {
+        async groupsInviteCode(accountId: string, id: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2006>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsInviteCode(accountId, id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3863,7 +3857,7 @@ export const GroupsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async groupsJoin(accountId: string, id: string, code: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GroupMetadata>> {
+        async groupsJoin(accountId: string, id: string, code: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GroupMetadata>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsJoin(accountId, id, code, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3875,7 +3869,7 @@ export const GroupsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async groupsLeave(accountId: string, id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: any; }>> {
+        async groupsLeave(accountId: string, id: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<{ [key: string]: any; }>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsLeave(accountId, id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3888,7 +3882,7 @@ export const GroupsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async groupsPatch(accountId: string, id: string, groupAction?: GroupAction, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GroupMetadata>> {
+        async groupsPatch(accountId: string, id: string, groupAction?: GroupAction, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GroupMetadata>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsPatch(accountId, id, groupAction, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -3900,7 +3894,7 @@ export const GroupsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async groupsPost(accountId: string, groupCreate?: GroupCreate, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GroupMetadata>> {
+        async groupsPost(accountId: string, groupCreate?: GroupCreate, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GroupMetadata>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.groupsPost(accountId, groupCreate, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4003,7 +3997,7 @@ export class GroupsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof GroupsApi
      */
-    public groupsGet(accountId: string, id: string, forceRefresh?: boolean, options?: AxiosRequestConfig) {
+    public groupsGet(accountId: string, id: string, forceRefresh?: boolean, options?: any) {
         return GroupsApiFp(this.configuration).groupsGet(accountId, id, forceRefresh, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4016,7 +4010,7 @@ export class GroupsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof GroupsApi
      */
-    public groupsInviteCode(accountId: string, id: string, options?: AxiosRequestConfig) {
+    public groupsInviteCode(accountId: string, id: string, options?: any) {
         return GroupsApiFp(this.configuration).groupsInviteCode(accountId, id, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4030,7 +4024,7 @@ export class GroupsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof GroupsApi
      */
-    public groupsJoin(accountId: string, id: string, code: string, options?: AxiosRequestConfig) {
+    public groupsJoin(accountId: string, id: string, code: string, options?: any) {
         return GroupsApiFp(this.configuration).groupsJoin(accountId, id, code, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4043,7 +4037,7 @@ export class GroupsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof GroupsApi
      */
-    public groupsLeave(accountId: string, id: string, options?: AxiosRequestConfig) {
+    public groupsLeave(accountId: string, id: string, options?: any) {
         return GroupsApiFp(this.configuration).groupsLeave(accountId, id, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4057,7 +4051,7 @@ export class GroupsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof GroupsApi
      */
-    public groupsPatch(accountId: string, id: string, groupAction?: GroupAction, options?: AxiosRequestConfig) {
+    public groupsPatch(accountId: string, id: string, groupAction?: GroupAction, options?: any) {
         return GroupsApiFp(this.configuration).groupsPatch(accountId, id, groupAction, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4070,7 +4064,7 @@ export class GroupsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof GroupsApi
      */
-    public groupsPost(accountId: string, groupCreate?: GroupCreate, options?: AxiosRequestConfig) {
+    public groupsPost(accountId: string, groupCreate?: GroupCreate, options?: any) {
         return GroupsApiFp(this.configuration).groupsPost(accountId, groupCreate, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -4091,7 +4085,7 @@ export const MessagesApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        messagesDelete: async (accountId: string, chatId: string, id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        messagesDelete: async (accountId: string, chatId: string, id: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('messagesDelete', 'accountId', accountId)
             // verify required parameter 'chatId' is not null or undefined
@@ -4119,7 +4113,7 @@ export const MessagesApiAxiosParamCreator = function (configuration?: Configurat
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -4136,7 +4130,7 @@ export const MessagesApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        messagesDeletePending: async (accountId?: string, chatId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        messagesDeletePending: async (accountId?: string, chatId?: string, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/messages/pending`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4163,7 +4157,7 @@ export const MessagesApiAxiosParamCreator = function (configuration?: Configurat
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -4181,7 +4175,7 @@ export const MessagesApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        messagesForward: async (accountId: string, chatId: string, id: string, toChatId: Array<string>, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        messagesForward: async (accountId: string, chatId: string, id: string, toChatId: Array<string>, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('messagesForward', 'accountId', accountId)
             // verify required parameter 'chatId' is not null or undefined
@@ -4215,7 +4209,7 @@ export const MessagesApiAxiosParamCreator = function (configuration?: Configurat
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -4236,7 +4230,7 @@ export const MessagesApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        messagesGet: async (accountId: string, chatId: string, beforeId?: string, count?: number, forceReload?: boolean, status?: 'note' | 'pending', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        messagesGet: async (accountId: string, chatId: string, beforeId?: string, count?: number, forceReload?: boolean, status?: 'note' | 'pending', options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('messagesGet', 'accountId', accountId)
             // verify required parameter 'chatId' is not null or undefined
@@ -4277,7 +4271,7 @@ export const MessagesApiAxiosParamCreator = function (configuration?: Configurat
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -4296,7 +4290,7 @@ export const MessagesApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        messagesPatch: async (accountId: string, chatId: string, id: string, inlineObject1?: InlineObject1, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        messagesPatch: async (accountId: string, chatId: string, id: string, inlineObject1?: InlineObject1, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('messagesPatch', 'accountId', accountId)
             // verify required parameter 'chatId' is not null or undefined
@@ -4326,7 +4320,7 @@ export const MessagesApiAxiosParamCreator = function (configuration?: Configurat
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(inlineObject1, localVarRequestOptions, configuration)
@@ -4345,7 +4339,7 @@ export const MessagesApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        messagesPost: async (accountId: string, chatId: string, messageCompose?: MessageCompose, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        messagesPost: async (accountId: string, chatId: string, messageCompose?: MessageCompose, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('messagesPost', 'accountId', accountId)
             // verify required parameter 'chatId' is not null or undefined
@@ -4372,7 +4366,7 @@ export const MessagesApiAxiosParamCreator = function (configuration?: Configurat
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
 
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
             localVarRequestOptions.data = serializeDataIfNeeded(messageCompose, localVarRequestOptions, configuration)
@@ -4391,7 +4385,7 @@ export const MessagesApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        messagesRefresh: async (accountId: string, chatId: string, id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        messagesRefresh: async (accountId: string, chatId: string, id: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('messagesRefresh', 'accountId', accountId)
             // verify required parameter 'chatId' is not null or undefined
@@ -4419,7 +4413,7 @@ export const MessagesApiAxiosParamCreator = function (configuration?: Configurat
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -4440,7 +4434,7 @@ export const MessagesApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        messagesSearch: async (q: string, accountId?: Array<string>, chatId?: string, page?: number, count?: number, returnChats?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        messagesSearch: async (q: string, accountId?: Array<string>, chatId?: string, page?: number, count?: number, returnChats?: boolean, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'q' is not null or undefined
             assertParamExists('messagesSearch', 'q', q)
             const localVarPath = `/messages/search`;
@@ -4485,7 +4479,7 @@ export const MessagesApiAxiosParamCreator = function (configuration?: Configurat
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -4513,7 +4507,7 @@ export const MessagesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async messagesDelete(accountId: string, chatId: string, id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+        async messagesDelete(accountId: string, chatId: string, id: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.messagesDelete(accountId, chatId, id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4525,7 +4519,7 @@ export const MessagesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async messagesDeletePending(accountId?: string, chatId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+        async messagesDeletePending(accountId?: string, chatId?: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.messagesDeletePending(accountId, chatId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4538,7 +4532,7 @@ export const MessagesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async messagesForward(accountId: string, chatId: string, id: string, toChatId: Array<string>, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Message>>> {
+        async messagesForward(accountId: string, chatId: string, id: string, toChatId: Array<string>, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Message>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.messagesForward(accountId, chatId, id, toChatId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4554,7 +4548,7 @@ export const MessagesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async messagesGet(accountId: string, chatId: string, beforeId?: string, count?: number, forceReload?: boolean, status?: 'note' | 'pending', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
+        async messagesGet(accountId: string, chatId: string, beforeId?: string, count?: number, forceReload?: boolean, status?: 'note' | 'pending', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.messagesGet(accountId, chatId, beforeId, count, forceReload, status, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4568,7 +4562,7 @@ export const MessagesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async messagesPatch(accountId: string, chatId: string, id: string, inlineObject1?: InlineObject1, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Message>> {
+        async messagesPatch(accountId: string, chatId: string, id: string, inlineObject1?: InlineObject1, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Message>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.messagesPatch(accountId, chatId, id, inlineObject1, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4581,7 +4575,7 @@ export const MessagesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async messagesPost(accountId: string, chatId: string, messageCompose?: MessageCompose, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Message>>> {
+        async messagesPost(accountId: string, chatId: string, messageCompose?: MessageCompose, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Message>>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.messagesPost(accountId, chatId, messageCompose, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4594,7 +4588,7 @@ export const MessagesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async messagesRefresh(accountId: string, chatId: string, id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Message>> {
+        async messagesRefresh(accountId: string, chatId: string, id: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Message>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.messagesRefresh(accountId, chatId, id, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4610,7 +4604,7 @@ export const MessagesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async messagesSearch(q: string, accountId?: Array<string>, chatId?: string, page?: number, count?: number, returnChats?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
+        async messagesSearch(q: string, accountId?: Array<string>, chatId?: string, page?: number, count?: number, returnChats?: boolean, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2005>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.messagesSearch(q, accountId, chatId, page, count, returnChats, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4746,7 +4740,7 @@ export class MessagesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof MessagesApi
      */
-    public messagesDelete(accountId: string, chatId: string, id: string, options?: AxiosRequestConfig) {
+    public messagesDelete(accountId: string, chatId: string, id: string, options?: any) {
         return MessagesApiFp(this.configuration).messagesDelete(accountId, chatId, id, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4759,7 +4753,7 @@ export class MessagesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof MessagesApi
      */
-    public messagesDeletePending(accountId?: string, chatId?: string, options?: AxiosRequestConfig) {
+    public messagesDeletePending(accountId?: string, chatId?: string, options?: any) {
         return MessagesApiFp(this.configuration).messagesDeletePending(accountId, chatId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4773,7 +4767,7 @@ export class MessagesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof MessagesApi
      */
-    public messagesForward(accountId: string, chatId: string, id: string, toChatId: Array<string>, options?: AxiosRequestConfig) {
+    public messagesForward(accountId: string, chatId: string, id: string, toChatId: Array<string>, options?: any) {
         return MessagesApiFp(this.configuration).messagesForward(accountId, chatId, id, toChatId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4790,7 +4784,7 @@ export class MessagesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof MessagesApi
      */
-    public messagesGet(accountId: string, chatId: string, beforeId?: string, count?: number, forceReload?: boolean, status?: 'note' | 'pending', options?: AxiosRequestConfig) {
+    public messagesGet(accountId: string, chatId: string, beforeId?: string, count?: number, forceReload?: boolean, status?: 'note' | 'pending', options?: any) {
         return MessagesApiFp(this.configuration).messagesGet(accountId, chatId, beforeId, count, forceReload, status, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4805,7 +4799,7 @@ export class MessagesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof MessagesApi
      */
-    public messagesPatch(accountId: string, chatId: string, id: string, inlineObject1?: InlineObject1, options?: AxiosRequestConfig) {
+    public messagesPatch(accountId: string, chatId: string, id: string, inlineObject1?: InlineObject1, options?: any) {
         return MessagesApiFp(this.configuration).messagesPatch(accountId, chatId, id, inlineObject1, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4819,7 +4813,7 @@ export class MessagesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof MessagesApi
      */
-    public messagesPost(accountId: string, chatId: string, messageCompose?: MessageCompose, options?: AxiosRequestConfig) {
+    public messagesPost(accountId: string, chatId: string, messageCompose?: MessageCompose, options?: any) {
         return MessagesApiFp(this.configuration).messagesPost(accountId, chatId, messageCompose, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4833,7 +4827,7 @@ export class MessagesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof MessagesApi
      */
-    public messagesRefresh(accountId: string, chatId: string, id: string, options?: AxiosRequestConfig) {
+    public messagesRefresh(accountId: string, chatId: string, id: string, options?: any) {
         return MessagesApiFp(this.configuration).messagesRefresh(accountId, chatId, id, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4850,7 +4844,7 @@ export class MessagesApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof MessagesApi
      */
-    public messagesSearch(q: string, accountId?: Array<string>, chatId?: string, page?: number, count?: number, returnChats?: boolean, options?: AxiosRequestConfig) {
+    public messagesSearch(q: string, accountId?: Array<string>, chatId?: string, page?: number, count?: number, returnChats?: boolean, options?: any) {
         return MessagesApiFp(this.configuration).messagesSearch(q, accountId, chatId, page, count, returnChats, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -4869,7 +4863,7 @@ export const TagsApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        tagsDelete: async (name: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        tagsDelete: async (name: string, options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'name' is not null or undefined
             assertParamExists('tagsDelete', 'name', name)
             const localVarPath = `/tags`;
@@ -4894,7 +4888,7 @@ export const TagsApiAxiosParamCreator = function (configuration?: Configuration)
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -4909,7 +4903,7 @@ export const TagsApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        tagsGet: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        tagsGet: async (options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/tags`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4928,7 +4922,7 @@ export const TagsApiAxiosParamCreator = function (configuration?: Configuration)
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -4956,7 +4950,7 @@ export const TagsApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        tagsPost: async (name: string, tags?: Array<string>, notTags?: Array<string>, contacts?: Array<string>, notContacts?: Array<string>, minMessagesSent?: number, minMessagesRecv?: number, maxMessagesSent?: number, maxMessagesRecv?: number, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        tagsPost: async (name: string, tags?: Array<string>, notTags?: Array<string>, contacts?: Array<string>, notContacts?: Array<string>, minMessagesSent?: number, minMessagesRecv?: number, maxMessagesSent?: number, maxMessagesRecv?: number, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', options: any = {}): Promise<RequestArgs> => {
             // verify required parameter 'name' is not null or undefined
             assertParamExists('tagsPost', 'name', name)
             const localVarPath = `/tags`;
@@ -5029,7 +5023,7 @@ export const TagsApiAxiosParamCreator = function (configuration?: Configuration)
 
 
     
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
@@ -5055,7 +5049,7 @@ export const TagsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async tagsDelete(name: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+        async tagsDelete(name: string, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.tagsDelete(name, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5065,7 +5059,7 @@ export const TagsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async tagsGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2008>> {
+        async tagsGet(options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2008>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.tagsGet(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5088,7 +5082,7 @@ export const TagsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async tagsPost(name: string, tags?: Array<string>, notTags?: Array<string>, contacts?: Array<string>, notContacts?: Array<string>, minMessagesSent?: number, minMessagesRecv?: number, maxMessagesSent?: number, maxMessagesRecv?: number, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Tag>> {
+        async tagsPost(name: string, tags?: Array<string>, notTags?: Array<string>, contacts?: Array<string>, notContacts?: Array<string>, minMessagesSent?: number, minMessagesRecv?: number, maxMessagesSent?: number, maxMessagesRecv?: number, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Tag>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.tagsPost(name, tags, notTags, contacts, notContacts, minMessagesSent, minMessagesRecv, maxMessagesSent, maxMessagesRecv, q, assignee, accountId, type, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5161,7 +5155,7 @@ export class TagsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TagsApi
      */
-    public tagsDelete(name: string, options?: AxiosRequestConfig) {
+    public tagsDelete(name: string, options?: any) {
         return TagsApiFp(this.configuration).tagsDelete(name, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -5172,7 +5166,7 @@ export class TagsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TagsApi
      */
-    public tagsGet(options?: AxiosRequestConfig) {
+    public tagsGet(options?: any) {
         return TagsApiFp(this.configuration).tagsGet(options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -5196,7 +5190,7 @@ export class TagsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TagsApi
      */
-    public tagsPost(name: string, tags?: Array<string>, notTags?: Array<string>, contacts?: Array<string>, notContacts?: Array<string>, minMessagesSent?: number, minMessagesRecv?: number, maxMessagesSent?: number, maxMessagesRecv?: number, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', options?: AxiosRequestConfig) {
+    public tagsPost(name: string, tags?: Array<string>, notTags?: Array<string>, contacts?: Array<string>, notContacts?: Array<string>, minMessagesSent?: number, minMessagesRecv?: number, maxMessagesSent?: number, maxMessagesRecv?: number, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', options?: any) {
         return TagsApiFp(this.configuration).tagsPost(name, tags, notTags, contacts, notContacts, minMessagesSent, minMessagesRecv, maxMessagesSent, maxMessagesRecv, q, assignee, accountId, type, options).then((request) => request(this.axios, this.basePath));
     }
 }
