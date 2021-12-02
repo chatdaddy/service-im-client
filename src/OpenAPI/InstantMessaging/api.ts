@@ -1702,7 +1702,7 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
 
             // authentication chatdaddy required
             // oauth required
-            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", [], configuration)
+            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", ["ACCOUNT_PATCH"], configuration)
 
 
     
@@ -1740,7 +1740,7 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
 
             // authentication chatdaddy required
             // oauth required
-            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", [], configuration)
+            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", ["ACCOUNT_DELETE"], configuration)
 
 
     
@@ -1775,7 +1775,7 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
 
             // authentication chatdaddy required
             // oauth required
-            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", [], configuration)
+            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", ["ACCOUNT_READ"], configuration)
 
             if (q !== undefined) {
                 localVarQueryParameter['q'] = q;
@@ -1817,7 +1817,7 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
 
             // authentication chatdaddy required
             // oauth required
-            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", [], configuration)
+            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", ["ACCOUNT_PATCH"], configuration)
 
 
     
@@ -1855,7 +1855,7 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
 
             // authentication chatdaddy required
             // oauth required
-            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", [], configuration)
+            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", ["ACCOUNT_PATCH"], configuration)
 
 
     
@@ -1894,7 +1894,7 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
 
             // authentication chatdaddy required
             // oauth required
-            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", [], configuration)
+            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", ["ACCOUNT_PATCH"], configuration)
 
 
     
@@ -1932,7 +1932,7 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
 
             // authentication chatdaddy required
             // oauth required
-            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", [], configuration)
+            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", ["ACCOUNT_CREATE"], configuration)
 
 
     
@@ -2256,7 +2256,7 @@ export const ChatsApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication chatdaddy required
             // oauth required
-            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", [], configuration)
+            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", ["CHATS_ACCESS_ALL", "CHATS_ACCESS_ASSIGNED"], configuration)
 
             if (count !== undefined) {
                 localVarQueryParameter['count'] = count;
@@ -2359,7 +2359,7 @@ export const ChatsApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication chatdaddy required
             // oauth required
-            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", [], configuration)
+            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", ["CHATS_ACCESS_ALL", "CHATS_ACCESS_ASSIGNED"], configuration)
 
 
     
@@ -2407,7 +2407,7 @@ export const ChatsApiAxiosParamCreator = function (configuration?: Configuration
 
             // authentication chatdaddy required
             // oauth required
-            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", [], configuration)
+            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", ["CHATS_ACCESS_ASSIGNED", "CHATS_ACCESS_ALL"], configuration)
 
             if (presence !== undefined) {
                 localVarQueryParameter['presence'] = presence;
@@ -3575,7 +3575,7 @@ export const GroupsApiAxiosParamCreator = function (configuration?: Configuratio
 
             // authentication chatdaddy required
             // oauth required
-            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", [], configuration)
+            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", ["CHATS_ACCESS_ALL", "CHATS_ACCESS_ASSIGNED"], configuration)
 
             if (forceRefresh !== undefined) {
                 localVarQueryParameter['forceRefresh'] = forceRefresh;
@@ -3621,7 +3621,7 @@ export const GroupsApiAxiosParamCreator = function (configuration?: Configuratio
 
             // authentication chatdaddy required
             // oauth required
-            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", [], configuration)
+            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", ["CHATS_ACCESS_ALL", "CHATS_ACCESS_ASSIGNED"], configuration)
 
 
     
@@ -3666,7 +3666,7 @@ export const GroupsApiAxiosParamCreator = function (configuration?: Configuratio
 
             // authentication chatdaddy required
             // oauth required
-            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", [], configuration)
+            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", ["GROUPS_UPDATE"], configuration)
 
             if (code !== undefined) {
                 localVarQueryParameter['code'] = code;
@@ -3712,7 +3712,7 @@ export const GroupsApiAxiosParamCreator = function (configuration?: Configuratio
 
             // authentication chatdaddy required
             // oauth required
-            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", [], configuration)
+            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", ["GROUPS_UPDATE"], configuration)
 
 
     
@@ -3755,7 +3755,7 @@ export const GroupsApiAxiosParamCreator = function (configuration?: Configuratio
 
             // authentication chatdaddy required
             // oauth required
-            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", [], configuration)
+            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", ["GROUPS_UPDATE"], configuration)
 
 
     
@@ -3797,7 +3797,7 @@ export const GroupsApiAxiosParamCreator = function (configuration?: Configuratio
 
             // authentication chatdaddy required
             // oauth required
-            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", [], configuration)
+            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", ["GROUPS_CREATE"], configuration)
 
 
     
@@ -4109,7 +4109,7 @@ export const MessagesApiAxiosParamCreator = function (configuration?: Configurat
 
             // authentication chatdaddy required
             // oauth required
-            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", [], configuration)
+            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", ["MESSAGES_DELETE"], configuration)
 
 
     
@@ -4145,7 +4145,7 @@ export const MessagesApiAxiosParamCreator = function (configuration?: Configurat
 
             // authentication chatdaddy required
             // oauth required
-            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", [], configuration)
+            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", ["MESSAGES_DELETE"], configuration)
 
             if (accountId !== undefined) {
                 localVarQueryParameter['accountId'] = accountId;
@@ -4201,7 +4201,7 @@ export const MessagesApiAxiosParamCreator = function (configuration?: Configurat
 
             // authentication chatdaddy required
             // oauth required
-            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", [], configuration)
+            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", ["MESSAGES_SEND_TO_ALL"], configuration)
 
             if (toChatId) {
                 localVarQueryParameter['toChatId'] = toChatId;
@@ -4360,7 +4360,7 @@ export const MessagesApiAxiosParamCreator = function (configuration?: Configurat
 
             // authentication chatdaddy required
             // oauth required
-            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", [], configuration)
+            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", ["MESSAGES_SEND_TO_ALL", "MESSAGES_SEND_TO_ASSIGNED"], configuration)
 
 
     
