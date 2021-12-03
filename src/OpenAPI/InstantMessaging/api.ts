@@ -28,7 +28,7 @@ import { BASE_PATH, COLLECTION_FORMATS, RequestArgs, BaseAPI, RequiredError } fr
  */
 export interface Account {
     /**
-     * Account ID of the user
+     * 
      * @type {string}
      * @memberof Account
      */
@@ -176,7 +176,7 @@ export interface AccountsPatchRequest {
  */
 export interface Chat {
     /**
-     * account it belongs to
+     * 
      * @type {string}
      * @memberof Chat
      */
@@ -372,7 +372,7 @@ export interface Contact {
      */
     'id': string;
     /**
-     * The account this is part of
+     * 
      * @type {string}
      * @memberof Contact
      */
@@ -562,6 +562,12 @@ export interface ContactsPatchPatchTags {
  * @interface ContactsPost
  */
 export interface ContactsPost {
+    /**
+     * 
+     * @type {string}
+     * @memberof ContactsPost
+     */
+    'accountId'?: string;
     /**
      * 
      * @type {Array<ContactsPostContacts>}
