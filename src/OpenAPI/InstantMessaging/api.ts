@@ -182,7 +182,7 @@ export interface Chat {
      */
     'accountId': string;
     /**
-     * chat ID
+     * ID for the contact/chat on the platform
      * @type {string}
      * @memberof Chat
      */
@@ -329,7 +329,7 @@ export interface ChatPresence {
      */
     'accountId'?: string;
     /**
-     * 
+     * ID for the contact/chat on the platform
      * @type {string}
      * @memberof ChatPresence
      */
@@ -366,7 +366,7 @@ export interface ChatPresence {
  */
 export interface Contact {
     /**
-     * contact ID for the platform
+     * ID for the contact/chat on the platform
      * @type {string}
      * @memberof Contact
      */
@@ -1045,7 +1045,7 @@ export interface InlineResponse2008 {
  */
 export interface Message {
     /**
-     * 
+     * ID for the contact/chat on the platform
      * @type {string}
      * @memberof Message
      */
@@ -1160,7 +1160,7 @@ export interface Message {
  */
 export interface MessageAllOf {
     /**
-     * 
+     * ID for the contact/chat on the platform
      * @type {string}
      * @memberof MessageAllOf
      */
@@ -1621,7 +1621,7 @@ export enum PresenceType {
  */
 export interface QuotedMessage {
     /**
-     * 
+     * ID for the contact/chat on the platform
      * @type {string}
      * @memberof QuotedMessage
      */
