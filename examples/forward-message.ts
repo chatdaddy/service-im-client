@@ -2,6 +2,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 import { makeAccessTokenFactory, Scope } from '@chatdaddy/service-auth-client'
+
 import { ChatsApi, Configuration, MessageComposeStatusEnum, MessagesApi } from '../src'
 
 /**
@@ -27,10 +28,10 @@ const run = async() => {
 	const { token: accessToken } = await getAccessToken(TEAM_ID)
 	
 	const messagesApi = new MessagesApi(new Configuration({ accessToken }))
-    const chatsApi = new ChatsApi(new Configuration({ accessToken }))
+	const chatsApi = new ChatsApi(new Configuration({ accessToken }))
     
 	// find the 2 most recent chats in the account
-    const { data } = await chatsApi.chatsGet(2)
+	const { data } = await chatsApi.chatsGet(2)
     
 	const firstChat = data.chats[0]
 	const secondChat = data.chats[0]
@@ -39,8 +40,8 @@ const run = async() => {
 		throw new Error('no chats available')
 	}
 
-    console.log(`got first chat with name: "${firstChat.contact?.name || 'unknown'}" and ID: "${firstChat.id}"`)
-    console.log(`got second chat with name: "${secondChat.contact?.name || 'unknown'}" and ID: "${secondChat.id}"`)
+	console.log(`got first chat with name: "${firstChat.contact?.name || 'unknown'}" and ID: "${firstChat.id}"`)
+	console.log(`got second chat with name: "${secondChat.contact?.name || 'unknown'}" and ID: "${secondChat.id}"`)
     
     
 	// send a text message to the first chat
@@ -51,12 +52,12 @@ const run = async() => {
 		status: MessageComposeStatusEnum.Pending,
 		// will send the message in one minute (60_000ms in the future)
 		timestamp: new Date(Date.now() + 60_000).toJSON()
-    })
+	})
     
-    const message = messages[0]
+	const message = messages[0]
     
-    // forward the message to the second chat
-   const { data: forwardedMessages } = messagesApi.messagesForward(firstChat!.accountId!, firstChat!.id!, message.id, secondChat.id)
+	// forward the message to the second chat
+	const { data: forwardedMessages } = messagesApi.messagesForward(firstChat!.accountId!, firstChat!.id!, message.id, secondChat.id)
 
 	console.log(`forwarded message with ID: "${forwardedMessages[0].id}" to "${forwardedMessages[0].chatId}" on ${forwardedMessages[0].timestamp}`)
 }
