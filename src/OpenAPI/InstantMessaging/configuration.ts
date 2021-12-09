@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Instant Messaging Service
+ * ChatDaddy Instant Messaging Service
  * Complete instant messaging API for WhatsApp Web & Multi-Device. 
  *
  * The version of the OpenAPI document: 2.0.0

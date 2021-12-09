@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
- * Instant Messaging Service
+ * ChatDaddy Instant Messaging Service
  * Complete instant messaging API for WhatsApp Web & Multi-Device. 
  *
  * The version of the OpenAPI document: 2.0.0
@@ -2234,6 +2234,48 @@ export const ChatsApiAxiosParamCreator = function (configuration?: Configuration
     return {
         /**
          * 
+         * @summary Delete a chat
+         * @param {string} accountId 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        chatsDelete: async (accountId: string, id: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'accountId' is not null or undefined
+            assertParamExists('chatsDelete', 'accountId', accountId)
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('chatsDelete', 'id', id)
+            const localVarPath = `/chats/{accountId}/{id}`
+                .replace(`{${"accountId"}}`, encodeURIComponent(String(accountId)))
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication chatdaddy required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", ["CHATS_DELETE"], configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Get chats
          * @param {number} [count] 
          * @param {string} [page] 
@@ -2448,6 +2490,18 @@ export const ChatsApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @summary Delete a chat
+         * @param {string} accountId 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async chatsDelete(accountId: string, id: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.chatsDelete(accountId, id, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @summary Get chats
          * @param {number} [count] 
          * @param {string} [page] 
@@ -2509,6 +2563,17 @@ export const ChatsApiFactory = function (configuration?: Configuration, basePath
     return {
         /**
          * 
+         * @summary Delete a chat
+         * @param {string} accountId 
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        chatsDelete(accountId: string, id: string, options?: any): AxiosPromise<void> {
+            return localVarFp.chatsDelete(accountId, id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Get chats
          * @param {number} [count] 
          * @param {string} [page] 
@@ -2565,6 +2630,19 @@ export const ChatsApiFactory = function (configuration?: Configuration, basePath
  * @extends {BaseAPI}
  */
 export class ChatsApi extends BaseAPI {
+    /**
+     * 
+     * @summary Delete a chat
+     * @param {string} accountId 
+     * @param {string} id 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChatsApi
+     */
+    public chatsDelete(accountId: string, id: string, options?: AxiosRequestConfig) {
+        return ChatsApiFp(this.configuration).chatsDelete(accountId, id, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @summary Get chats
