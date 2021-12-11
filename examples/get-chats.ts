@@ -28,30 +28,52 @@ const run = async() => {
 	
 	const chatsApi = new ChatsApi(new Configuration({ accessToken }))
 
-	const { data: { chats } } = await chatsApi.chatsGet(
-		20 || undefined, // Count, Limit of chats to get eg. 10
-		'2', // Page count eg. 2,
-		true, // Filter archieved or unarchived chats eg. false
-		false, //Filter only uread messages eg. true
-		true, // Filter Chats that have pending messages eg. true
-		'asd-3e44o', // Search for user Id mentioned in chat
-		false, // Filter chats that have any unsolved notes
-		true, // Filter chats where last message was from me
-		['chatdaddy'], // Filter contacts who fall in either of these tags
-		['1234@s.whatsapp.net'], // Filter these specific contact ids
-		'example@chatdaddy.com', // Search string for contact name/phone number/email
-		undefined, // Filter contacts assigned to the specified users
-		undefined, // Filter contacts only belonging to this account
-		'group', // Filter chat type "group" | "individual"
-		true, // request to return count oof unread chats 
-		{
-			responseType: 'json'
-		} // other AxiosRequestConfig options
+	const { data: { chats: unreadChats } } = await chatsApi.chatsGet(
+		undefined, // Count, Limit of chats to get eg. 10
+		undefined, // Page count eg. 2,
+		undefined, // Filter archieved or unarchived chats eg. false
+		true, //Filter only unread messages eg. true
 	)
 
-	console.log(`got ${chats.length} chats`)
+	console.log(`got ${unreadChats.length} unread chats`)
 
-	return chats
+	const { data: { chats: groupChats } } = await chatsApi.chatsGet(
+		undefined, // Count, Limit of chats to get eg. 10
+		undefined, // Page count eg. 2,
+		undefined, // Filter archieved or unarchived chats eg. false
+		undefined, //Filter only unread messages eg. true
+		undefined, // Filter Chats that have pending messages eg. true
+		undefined, // Search for user Id mentioned in chat
+		undefined, // Filter chats that have any unsolved notes
+		undefined, // Filter chats where last message was from me
+		undefined, // Filter contacts who fall in either of these tags
+		undefined, // Filter these specific contact ids
+		undefined, // Search string for contact name/phone number/email
+		undefined, // Filter contacts assigned to the specified users
+		undefined, // Filter contacts only belonging to this account
+		'group'
+	)
+
+	console.log(`got ${groupChats.length} group chats`)
+
+	const { data: { chats: individualChats } } = await chatsApi.chatsGet(
+		undefined, // Count, Limit of chats to get eg. 10
+		undefined, // Page count eg. 2,
+		undefined, // Filter archieved or unarchived chats eg. false
+		undefined, //Filter only unread messages eg. true
+		undefined, // Filter Chats that have pending messages eg. true
+		undefined, // Search for user Id mentioned in chat
+		undefined, // Filter chats that have any unsolved notes
+		undefined, // Filter chats where last message was from me
+		undefined, // Filter contacts who fall in either of these tags
+		undefined, // Filter these specific contact ids
+		undefined, // Search string for contact name/phone number/email
+		undefined, // Filter contacts assigned to the specified users
+		undefined, // Filter contacts only belonging to this account
+		'individual'
+	)
+
+	console.log(`got ${individualChats.length} individual chats`)
 
 }
 
