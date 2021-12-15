@@ -1604,6 +1604,37 @@ export interface MiscOptions {
 /**
  * 
  * @export
+ * @interface ModelError
+ */
+export interface ModelError {
+    /**
+     * 
+     * @type {number}
+     * @memberof ModelError
+     */
+    'statusCode': number;
+    /**
+     * Specific description of the error
+     * @type {string}
+     * @memberof ModelError
+     */
+    'error': string;
+    /**
+     * What the error was
+     * @type {string}
+     * @memberof ModelError
+     */
+    'message': string;
+    /**
+     * Some extra information about the error
+     * @type {object}
+     * @memberof ModelError
+     */
+    'data'?: object;
+}
+/**
+ * 
+ * @export
  * @enum {string}
  */
 
