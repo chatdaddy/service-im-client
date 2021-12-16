@@ -71,10 +71,10 @@ export interface Account {
     'updatedAt': string;
     /**
      * 
-     * @type {State}
+     * @type {AccountState}
      * @memberof Account
      */
-    'state': State;
+    'state': AccountState;
     /**
      * 
      * @type {AccountError}
@@ -132,6 +132,18 @@ export interface AccountSettings {
      */
     'notifyUsers'?: Array<string>;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export enum AccountState {
+    Open = 'open',
+    Connecting = 'connecting',
+    Close = 'close'
+}
+
 /**
  * 
  * @export
@@ -1729,18 +1741,6 @@ export interface QuotedMessage {
 /**
  * 
  * @export
- * @enum {string}
- */
-
-export enum State {
-    Open = 'open',
-    Connecting = 'connecting',
-    Close = 'close'
-}
-
-/**
- * 
- * @export
  * @interface Tag
  */
 export interface Tag {
@@ -1844,10 +1844,14 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
          * 
          * @summary Get the list of all accounts
          * @param {string} [q] search accounts by ID/Nickname
+         * @param {boolean} [all] 
+         * @param {AccountState} [state] only fetch accounts with a state
+         * @param {number} [page] 
+         * @param {number} [count] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsGet: async (q?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        accountsGet: async (q?: string, all?: boolean, state?: AccountState, page?: number, count?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/accounts`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -1866,6 +1870,22 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
 
             if (q !== undefined) {
                 localVarQueryParameter['q'] = q;
+            }
+
+            if (all !== undefined) {
+                localVarQueryParameter['all'] = all;
+            }
+
+            if (state !== undefined) {
+                localVarQueryParameter['state'] = state;
+            }
+
+            if (page !== undefined) {
+                localVarQueryParameter['page'] = page;
+            }
+
+            if (count !== undefined) {
+                localVarQueryParameter['count'] = count;
             }
 
 
@@ -2071,11 +2091,15 @@ export const AccountApiFp = function(configuration?: Configuration) {
          * 
          * @summary Get the list of all accounts
          * @param {string} [q] search accounts by ID/Nickname
+         * @param {boolean} [all] 
+         * @param {AccountState} [state] only fetch accounts with a state
+         * @param {number} [page] 
+         * @param {number} [count] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsGet(q?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsGet(q, options);
+        async accountsGet(q?: string, all?: boolean, state?: AccountState, page?: number, count?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse200>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsGet(q, all, state, page, count, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -2157,11 +2181,15 @@ export const AccountApiFactory = function (configuration?: Configuration, basePa
          * 
          * @summary Get the list of all accounts
          * @param {string} [q] search accounts by ID/Nickname
+         * @param {boolean} [all] 
+         * @param {AccountState} [state] only fetch accounts with a state
+         * @param {number} [page] 
+         * @param {number} [count] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsGet(q?: string, options?: any): AxiosPromise<InlineResponse200> {
-            return localVarFp.accountsGet(q, options).then((request) => request(axios, basePath));
+        accountsGet(q?: string, all?: boolean, state?: AccountState, page?: number, count?: number, options?: any): AxiosPromise<InlineResponse200> {
+            return localVarFp.accountsGet(q, all, state, page, count, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -2242,12 +2270,16 @@ export class AccountApi extends BaseAPI {
      * 
      * @summary Get the list of all accounts
      * @param {string} [q] search accounts by ID/Nickname
+     * @param {boolean} [all] 
+     * @param {AccountState} [state] only fetch accounts with a state
+     * @param {number} [page] 
+     * @param {number} [count] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AccountApi
      */
-    public accountsGet(q?: string, options?: AxiosRequestConfig) {
-        return AccountApiFp(this.configuration).accountsGet(q, options).then((request) => request(this.axios, this.basePath));
+    public accountsGet(q?: string, all?: boolean, state?: AccountState, page?: number, count?: number, options?: AxiosRequestConfig) {
+        return AccountApiFp(this.configuration).accountsGet(q, all, state, page, count, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
