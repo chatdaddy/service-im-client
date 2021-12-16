@@ -903,6 +903,12 @@ export interface InlineResponse200 {
      * @memberof InlineResponse200
      */
     'accounts': Array<Account>;
+    /**
+     * 
+     * @type {number}
+     * @memberof InlineResponse200
+     */
+    'total'?: number;
 }
 /**
  * 
