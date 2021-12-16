@@ -1032,9 +1032,28 @@ export interface InlineResponse2007 {
  */
 export interface InlineResponse2008 {
     /**
+     * Whether the user exists
+     * @type {boolean}
+     * @memberof InlineResponse2008
+     */
+    'exists': boolean;
+    /**
+     * True ID of the user on the platform
+     * @type {string}
+     * @memberof InlineResponse2008
+     */
+    'id': string;
+}
+/**
+ * 
+ * @export
+ * @interface InlineResponse2009
+ */
+export interface InlineResponse2009 {
+    /**
      * 
      * @type {Array<Tag>}
-     * @memberof InlineResponse2008
+     * @memberof InlineResponse2009
      */
     'tags': Array<Tag>;
 }
@@ -1589,6 +1608,12 @@ export interface MiscOptions {
      */
     'forwardCount'?: number;
     /**
+     * 
+     * @type {MiscOptionsForwarded}
+     * @memberof MiscOptions
+     */
+    'forwarded'?: MiscOptionsForwarded;
+    /**
      * Adds random whitespace to produce a distinct message
      * @type {boolean}
      * @memberof MiscOptions
@@ -1600,6 +1625,25 @@ export interface MiscOptions {
      * @memberof MiscOptions
      */
     'buttonReplyId'?: string;
+}
+/**
+ * the message being forwarded
+ * @export
+ * @interface MiscOptionsForwarded
+ */
+export interface MiscOptionsForwarded {
+    /**
+     * ID for the contact/chat on the platform
+     * @type {string}
+     * @memberof MiscOptionsForwarded
+     */
+    'chatId': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof MiscOptionsForwarded
+     */
+    'id': string;
 }
 /**
  * 
@@ -2659,6 +2703,52 @@ export class ChatsApi extends BaseAPI {
 export const ContactsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
+         * Eg. provide a phone number to check whether the user is registered on WhatsApp
+         * @summary Check a given user exists on the IM platform
+         * @param {'whatsapp'} type which account type to check from
+         * @param {string} [phoneNumber] check for the given phone number
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        contactsCheckExists: async (type: 'whatsapp', phoneNumber?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'type' is not null or undefined
+            assertParamExists('contactsCheckExists', 'type', type)
+            const localVarPath = `/contacts/exists`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication chatdaddy required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", ["CONTACTS_READ_ALL"], configuration)
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
+
+            if (phoneNumber !== undefined) {
+                localVarQueryParameter['phoneNumber'] = phoneNumber;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * 
          * @summary Delete contacts
          * @param {Array<string>} [tags] Get contacts who fall in either of these tags
@@ -3050,6 +3140,18 @@ export const ContactsApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ContactsApiAxiosParamCreator(configuration)
     return {
         /**
+         * Eg. provide a phone number to check whether the user is registered on WhatsApp
+         * @summary Check a given user exists on the IM platform
+         * @param {'whatsapp'} type which account type to check from
+         * @param {string} [phoneNumber] check for the given phone number
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async contactsCheckExists(type: 'whatsapp', phoneNumber?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2008>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.contactsCheckExists(type, phoneNumber, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
          * 
          * @summary Delete contacts
          * @param {Array<string>} [tags] Get contacts who fall in either of these tags
@@ -3153,6 +3255,17 @@ export const ContactsApiFactory = function (configuration?: Configuration, baseP
     const localVarFp = ContactsApiFp(configuration)
     return {
         /**
+         * Eg. provide a phone number to check whether the user is registered on WhatsApp
+         * @summary Check a given user exists on the IM platform
+         * @param {'whatsapp'} type which account type to check from
+         * @param {string} [phoneNumber] check for the given phone number
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        contactsCheckExists(type: 'whatsapp', phoneNumber?: string, options?: any): AxiosPromise<InlineResponse2008> {
+            return localVarFp.contactsCheckExists(type, phoneNumber, options).then((request) => request(axios, basePath));
+        },
+        /**
          * 
          * @summary Delete contacts
          * @param {Array<string>} [tags] Get contacts who fall in either of these tags
@@ -3250,6 +3363,19 @@ export const ContactsApiFactory = function (configuration?: Configuration, baseP
  * @extends {BaseAPI}
  */
 export class ContactsApi extends BaseAPI {
+    /**
+     * Eg. provide a phone number to check whether the user is registered on WhatsApp
+     * @summary Check a given user exists on the IM platform
+     * @param {'whatsapp'} type which account type to check from
+     * @param {string} [phoneNumber] check for the given phone number
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ContactsApi
+     */
+    public contactsCheckExists(type: 'whatsapp', phoneNumber?: string, options?: AxiosRequestConfig) {
+        return ContactsApiFp(this.configuration).contactsCheckExists(type, phoneNumber, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @summary Delete contacts
@@ -5110,7 +5236,7 @@ export const TagsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async tagsGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2008>> {
+        async tagsGet(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2009>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.tagsGet(options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -5163,7 +5289,7 @@ export const TagsApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        tagsGet(options?: any): AxiosPromise<InlineResponse2008> {
+        tagsGet(options?: any): AxiosPromise<InlineResponse2009> {
             return localVarFp.tagsGet(options).then((request) => request(axios, basePath));
         },
         /**
