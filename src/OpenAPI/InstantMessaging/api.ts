@@ -669,63 +669,37 @@ export interface DataModelInner {
     'byChatId'?: Array<object>;
 }
 /**
- * @type GroupAction
+ * 
  * @export
+ * @interface GroupAction
  */
-export type GroupAction = GroupActionOneOf | GroupActionOneOf1 | GroupActionOneOf2 | GroupActionOneOf3;
+export interface GroupAction {
+    /**
+     * 
+     * @type {GroupActionType}
+     * @memberof GroupAction
+     */
+    'action'?: GroupActionType;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof GroupAction
+     */
+    'participants'?: Array<string>;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
 
-/**
- * 
- * @export
- * @interface GroupActionOneOf
- */
-export interface GroupActionOneOf {
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof GroupActionOneOf
-     */
-    'add': Array<string>;
+export enum GroupActionType {
+    Add = 'add',
+    Remove = 'remove',
+    Demote = 'demote',
+    Promote = 'promote'
 }
-/**
- * 
- * @export
- * @interface GroupActionOneOf1
- */
-export interface GroupActionOneOf1 {
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof GroupActionOneOf1
-     */
-    'remove': Array<string>;
-}
-/**
- * 
- * @export
- * @interface GroupActionOneOf2
- */
-export interface GroupActionOneOf2 {
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof GroupActionOneOf2
-     */
-    'promote': Array<string>;
-}
-/**
- * 
- * @export
- * @interface GroupActionOneOf3
- */
-export interface GroupActionOneOf3 {
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof GroupActionOneOf3
-     */
-    'demote': Array<string>;
-}
+
 /**
  * 
  * @export
