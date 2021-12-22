@@ -260,6 +260,12 @@ export interface Chat {
      */
     'hasUnsolvedNote'?: boolean;
     /**
+     * does this chat have any failed messages
+     * @type {boolean}
+     * @memberof Chat
+     */
+    'hasFailedMessage'?: boolean;
+    /**
      * the user IDs mentioned in the chat
      * @type {Array<string>}
      * @memberof Chat
@@ -2329,6 +2335,7 @@ export const ChatsApiAxiosParamCreator = function (configuration?: Configuration
          * @param {boolean} [hasPendingMessage] 
          * @param {string} [mentioned] 
          * @param {boolean} [hasUnsolvedNote] 
+         * @param {boolean} [hasFailedMessage] 
          * @param {boolean} [lastMessageFromMe] 
          * @param {Array<string>} [tags] Get contacts who fall in either of these tags
          * @param {Array<string>} [contacts] Get these specific contact ids
@@ -2340,7 +2347,7 @@ export const ChatsApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        chatsGet: async (count?: number, page?: string, archive?: boolean, unread?: boolean, hasPendingMessage?: boolean, mentioned?: string, hasUnsolvedNote?: boolean, lastMessageFromMe?: boolean, tags?: Array<string>, contacts?: Array<string>, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', returnUnreadChatCount?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        chatsGet: async (count?: number, page?: string, archive?: boolean, unread?: boolean, hasPendingMessage?: boolean, mentioned?: string, hasUnsolvedNote?: boolean, hasFailedMessage?: boolean, lastMessageFromMe?: boolean, tags?: Array<string>, contacts?: Array<string>, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', returnUnreadChatCount?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/chats`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2383,6 +2390,10 @@ export const ChatsApiAxiosParamCreator = function (configuration?: Configuration
 
             if (hasUnsolvedNote !== undefined) {
                 localVarQueryParameter['hasUnsolvedNote'] = hasUnsolvedNote;
+            }
+
+            if (hasFailedMessage !== undefined) {
+                localVarQueryParameter['hasFailedMessage'] = hasFailedMessage;
             }
 
             if (lastMessageFromMe !== undefined) {
@@ -2543,6 +2554,7 @@ export const ChatsApiFp = function(configuration?: Configuration) {
          * @param {boolean} [hasPendingMessage] 
          * @param {string} [mentioned] 
          * @param {boolean} [hasUnsolvedNote] 
+         * @param {boolean} [hasFailedMessage] 
          * @param {boolean} [lastMessageFromMe] 
          * @param {Array<string>} [tags] Get contacts who fall in either of these tags
          * @param {Array<string>} [contacts] Get these specific contact ids
@@ -2554,8 +2566,8 @@ export const ChatsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async chatsGet(count?: number, page?: string, archive?: boolean, unread?: boolean, hasPendingMessage?: boolean, mentioned?: string, hasUnsolvedNote?: boolean, lastMessageFromMe?: boolean, tags?: Array<string>, contacts?: Array<string>, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', returnUnreadChatCount?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.chatsGet(count, page, archive, unread, hasPendingMessage, mentioned, hasUnsolvedNote, lastMessageFromMe, tags, contacts, q, assignee, accountId, type, returnUnreadChatCount, options);
+        async chatsGet(count?: number, page?: string, archive?: boolean, unread?: boolean, hasPendingMessage?: boolean, mentioned?: string, hasUnsolvedNote?: boolean, hasFailedMessage?: boolean, lastMessageFromMe?: boolean, tags?: Array<string>, contacts?: Array<string>, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', returnUnreadChatCount?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2002>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.chatsGet(count, page, archive, unread, hasPendingMessage, mentioned, hasUnsolvedNote, hasFailedMessage, lastMessageFromMe, tags, contacts, q, assignee, accountId, type, returnUnreadChatCount, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -2604,6 +2616,7 @@ export const ChatsApiFactory = function (configuration?: Configuration, basePath
          * @param {boolean} [hasPendingMessage] 
          * @param {string} [mentioned] 
          * @param {boolean} [hasUnsolvedNote] 
+         * @param {boolean} [hasFailedMessage] 
          * @param {boolean} [lastMessageFromMe] 
          * @param {Array<string>} [tags] Get contacts who fall in either of these tags
          * @param {Array<string>} [contacts] Get these specific contact ids
@@ -2615,8 +2628,8 @@ export const ChatsApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        chatsGet(count?: number, page?: string, archive?: boolean, unread?: boolean, hasPendingMessage?: boolean, mentioned?: string, hasUnsolvedNote?: boolean, lastMessageFromMe?: boolean, tags?: Array<string>, contacts?: Array<string>, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', returnUnreadChatCount?: boolean, options?: any): AxiosPromise<InlineResponse2002> {
-            return localVarFp.chatsGet(count, page, archive, unread, hasPendingMessage, mentioned, hasUnsolvedNote, lastMessageFromMe, tags, contacts, q, assignee, accountId, type, returnUnreadChatCount, options).then((request) => request(axios, basePath));
+        chatsGet(count?: number, page?: string, archive?: boolean, unread?: boolean, hasPendingMessage?: boolean, mentioned?: string, hasUnsolvedNote?: boolean, hasFailedMessage?: boolean, lastMessageFromMe?: boolean, tags?: Array<string>, contacts?: Array<string>, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', returnUnreadChatCount?: boolean, options?: any): AxiosPromise<InlineResponse2002> {
+            return localVarFp.chatsGet(count, page, archive, unread, hasPendingMessage, mentioned, hasUnsolvedNote, hasFailedMessage, lastMessageFromMe, tags, contacts, q, assignee, accountId, type, returnUnreadChatCount, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -2662,6 +2675,7 @@ export class ChatsApi extends BaseAPI {
      * @param {boolean} [hasPendingMessage] 
      * @param {string} [mentioned] 
      * @param {boolean} [hasUnsolvedNote] 
+     * @param {boolean} [hasFailedMessage] 
      * @param {boolean} [lastMessageFromMe] 
      * @param {Array<string>} [tags] Get contacts who fall in either of these tags
      * @param {Array<string>} [contacts] Get these specific contact ids
@@ -2674,8 +2688,8 @@ export class ChatsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ChatsApi
      */
-    public chatsGet(count?: number, page?: string, archive?: boolean, unread?: boolean, hasPendingMessage?: boolean, mentioned?: string, hasUnsolvedNote?: boolean, lastMessageFromMe?: boolean, tags?: Array<string>, contacts?: Array<string>, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', returnUnreadChatCount?: boolean, options?: AxiosRequestConfig) {
-        return ChatsApiFp(this.configuration).chatsGet(count, page, archive, unread, hasPendingMessage, mentioned, hasUnsolvedNote, lastMessageFromMe, tags, contacts, q, assignee, accountId, type, returnUnreadChatCount, options).then((request) => request(this.axios, this.basePath));
+    public chatsGet(count?: number, page?: string, archive?: boolean, unread?: boolean, hasPendingMessage?: boolean, mentioned?: string, hasUnsolvedNote?: boolean, hasFailedMessage?: boolean, lastMessageFromMe?: boolean, tags?: Array<string>, contacts?: Array<string>, q?: string, assignee?: Array<string>, accountId?: Array<string>, type?: 'group' | 'individual', returnUnreadChatCount?: boolean, options?: AxiosRequestConfig) {
+        return ChatsApiFp(this.configuration).chatsGet(count, page, archive, unread, hasPendingMessage, mentioned, hasUnsolvedNote, hasFailedMessage, lastMessageFromMe, tags, contacts, q, assignee, accountId, type, returnUnreadChatCount, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -4407,11 +4421,11 @@ export const MessagesApiAxiosParamCreator = function (configuration?: Configurat
          * @param {string} [beforeId] Get messages before this message ID
          * @param {number} [count] Number of messages to fetch
          * @param {boolean} [forceReload] Deletes all cached messages for this chat &amp; fetches messages again from the original API source
-         * @param {'note' | 'pending'} [status] fetch only \&quot;notes\&quot; or \&quot;pending\&quot; messages
+         * @param {'note' | 'pending' | 'error'} [status] fetch only \&quot;notes\&quot;, \&quot;pending\&quot; or \&quot;error\&quot; messages
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        messagesGet: async (accountId: string, chatId: string, beforeId?: string, count?: number, forceReload?: boolean, status?: 'note' | 'pending', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        messagesGet: async (accountId: string, chatId: string, beforeId?: string, count?: number, forceReload?: boolean, status?: 'note' | 'pending' | 'error', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('messagesGet', 'accountId', accountId)
             // verify required parameter 'chatId' is not null or undefined
@@ -4730,11 +4744,11 @@ export const MessagesApiFp = function(configuration?: Configuration) {
          * @param {string} [beforeId] Get messages before this message ID
          * @param {number} [count] Number of messages to fetch
          * @param {boolean} [forceReload] Deletes all cached messages for this chat &amp; fetches messages again from the original API source
-         * @param {'note' | 'pending'} [status] fetch only \&quot;notes\&quot; or \&quot;pending\&quot; messages
+         * @param {'note' | 'pending' | 'error'} [status] fetch only \&quot;notes\&quot;, \&quot;pending\&quot; or \&quot;error\&quot; messages
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async messagesGet(accountId: string, chatId: string, beforeId?: string, count?: number, forceReload?: boolean, status?: 'note' | 'pending', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
+        async messagesGet(accountId: string, chatId: string, beforeId?: string, count?: number, forceReload?: boolean, status?: 'note' | 'pending' | 'error', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2004>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.messagesGet(accountId, chatId, beforeId, count, forceReload, status, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
@@ -4848,11 +4862,11 @@ export const MessagesApiFactory = function (configuration?: Configuration, baseP
          * @param {string} [beforeId] Get messages before this message ID
          * @param {number} [count] Number of messages to fetch
          * @param {boolean} [forceReload] Deletes all cached messages for this chat &amp; fetches messages again from the original API source
-         * @param {'note' | 'pending'} [status] fetch only \&quot;notes\&quot; or \&quot;pending\&quot; messages
+         * @param {'note' | 'pending' | 'error'} [status] fetch only \&quot;notes\&quot;, \&quot;pending\&quot; or \&quot;error\&quot; messages
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        messagesGet(accountId: string, chatId: string, beforeId?: string, count?: number, forceReload?: boolean, status?: 'note' | 'pending', options?: any): AxiosPromise<InlineResponse2004> {
+        messagesGet(accountId: string, chatId: string, beforeId?: string, count?: number, forceReload?: boolean, status?: 'note' | 'pending' | 'error', options?: any): AxiosPromise<InlineResponse2004> {
             return localVarFp.messagesGet(accountId, chatId, beforeId, count, forceReload, status, options).then((request) => request(axios, basePath));
         },
         /**
@@ -4967,12 +4981,12 @@ export class MessagesApi extends BaseAPI {
      * @param {string} [beforeId] Get messages before this message ID
      * @param {number} [count] Number of messages to fetch
      * @param {boolean} [forceReload] Deletes all cached messages for this chat &amp; fetches messages again from the original API source
-     * @param {'note' | 'pending'} [status] fetch only \&quot;notes\&quot; or \&quot;pending\&quot; messages
+     * @param {'note' | 'pending' | 'error'} [status] fetch only \&quot;notes\&quot;, \&quot;pending\&quot; or \&quot;error\&quot; messages
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MessagesApi
      */
-    public messagesGet(accountId: string, chatId: string, beforeId?: string, count?: number, forceReload?: boolean, status?: 'note' | 'pending', options?: AxiosRequestConfig) {
+    public messagesGet(accountId: string, chatId: string, beforeId?: string, count?: number, forceReload?: boolean, status?: 'note' | 'pending' | 'error', options?: AxiosRequestConfig) {
         return MessagesApiFp(this.configuration).messagesGet(accountId, chatId, beforeId, count, forceReload, status, options).then((request) => request(this.axios, this.basePath));
     }
 
