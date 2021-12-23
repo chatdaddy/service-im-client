@@ -1111,10 +1111,10 @@ export interface Message {
     'status'?: MessageStatus;
     /**
      * 
-     * @type {{ [key: string]: any; }}
+     * @type {MessageAllOfError}
      * @memberof Message
      */
-    'error'?: { [key: string]: any; } | null;
+    'error'?: MessageAllOfError | null;
     /**
      * Only for notes, user ID of the person who resolved the note
      * @type {string}
@@ -1226,10 +1226,10 @@ export interface MessageAllOf {
     'status'?: MessageStatus;
     /**
      * 
-     * @type {{ [key: string]: any; }}
+     * @type {MessageAllOfError}
      * @memberof MessageAllOf
      */
-    'error'?: { [key: string]: any; } | null;
+    'error'?: MessageAllOfError | null;
     /**
      * Only for notes, user ID of the person who resolved the note
      * @type {string}
@@ -1248,6 +1248,31 @@ export interface MessageAllOf {
      * @memberof MessageAllOf
      */
     'miscOptions'?: MiscOptions;
+}
+/**
+ * 
+ * @export
+ * @interface MessageAllOfError
+ */
+export interface MessageAllOfError {
+    /**
+     * 
+     * @type {string}
+     * @memberof MessageAllOfError
+     */
+    'message': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof MessageAllOfError
+     */
+    'statusCode': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof MessageAllOfError
+     */
+    'retries'?: number;
 }
 /**
  * The user ID of the person that sent it
