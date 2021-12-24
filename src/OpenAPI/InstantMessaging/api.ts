@@ -445,10 +445,10 @@ export interface Contact {
     'img'?: ContactImg | null;
     /**
      * Tags associated with this contact
-     * @type {Array<Tag>}
+     * @type {Array<ContactTag>}
      * @memberof Contact
      */
-    'tags': Array<Tag>;
+    'tags': Array<ContactTag>;
     /**
      * The assignee of the contact
      * @type {string}
@@ -492,6 +492,31 @@ export interface ContactImg {
      * @memberof ContactImg
      */
     'fetchedAt'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface ContactTag
+ */
+export interface ContactTag {
+    /**
+     * 
+     * @type {string}
+     * @memberof ContactTag
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ContactTag
+     */
+    'value'?: string | null;
+    /**
+     * used in events to denote that the tag has been removed
+     * @type {boolean}
+     * @memberof ContactTag
+     */
+    'remove'?: boolean;
 }
 /**
  * 
@@ -550,29 +575,10 @@ export interface ContactsPatchPatch {
     'assignee'?: string | null;
     /**
      * 
-     * @type {Array<ContactsPatchPatchTags>}
+     * @type {Array<ContactTag>}
      * @memberof ContactsPatchPatch
      */
-    'tags'?: Array<ContactsPatchPatchTags>;
-}
-/**
- * 
- * @export
- * @interface ContactsPatchPatchTags
- */
-export interface ContactsPatchPatchTags {
-    /**
-     * 
-     * @type {string}
-     * @memberof ContactsPatchPatchTags
-     */
-    'name': string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ContactsPatchPatchTags
-     */
-    'remove'?: boolean;
+    'tags'?: Array<ContactTag>;
 }
 /**
  * 
@@ -870,6 +876,19 @@ export interface InlineObject1 {
      * @memberof InlineObject1
      */
     'timestamp'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InlineObject2
+ */
+export interface InlineObject2 {
+    /**
+     * 
+     * @type {TagFieldValidation}
+     * @memberof InlineObject2
+     */
+    'validation'?: TagFieldValidation;
 }
 /**
  * 
@@ -1399,11 +1418,11 @@ export interface MessageCompose {
      */
     'id'?: string;
     /**
-     * 
+     * Set the status of the message, use to create notes
      * @type {string}
      * @memberof MessageCompose
      */
-    'status': MessageComposeStatusEnum;
+    'status'?: MessageComposeStatusEnum;
     /**
      * An ISO formatted timestamp
      * @type {string}
@@ -1482,11 +1501,11 @@ export interface MessageComposeAllOf {
      */
     'id'?: string;
     /**
-     * 
+     * Set the status of the message, use to create notes
      * @type {string}
      * @memberof MessageComposeAllOf
      */
-    'status': MessageComposeAllOfStatusEnum;
+    'status'?: MessageComposeAllOfStatusEnum;
     /**
      * An ISO formatted timestamp
      * @type {string}
@@ -1767,7 +1786,86 @@ export interface Tag {
      * @memberof Tag
      */
     'filters'?: object | null;
+    /**
+     * 
+     * @type {TagFieldValidation}
+     * @memberof Tag
+     */
+    'validation'?: TagFieldValidation;
 }
+/**
+ * @type TagFieldValidation
+ * @export
+ */
+export type TagFieldValidation = TagFieldValidationOneOf | TagFieldValidationOneOf1;
+
+/**
+ * 
+ * @export
+ * @interface TagFieldValidationOneOf
+ */
+export interface TagFieldValidationOneOf {
+    /**
+     * 
+     * @type {string}
+     * @memberof TagFieldValidationOneOf
+     */
+    'type'?: TagFieldValidationOneOfTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof TagFieldValidationOneOf
+     */
+    'format'?: TagFieldValidationOneOfFormatEnum;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof TagFieldValidationOneOf
+     */
+    'enum'?: Array<string>;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum TagFieldValidationOneOfTypeEnum {
+    String = 'string'
+}
+/**
+    * @export
+    * @enum {string}
+    */
+export enum TagFieldValidationOneOfFormatEnum {
+    Email = 'email',
+    Phone = 'phone',
+    Uri = 'uri'
+}
+
+/**
+ * 
+ * @export
+ * @interface TagFieldValidationOneOf1
+ */
+export interface TagFieldValidationOneOf1 {
+    /**
+     * 
+     * @type {string}
+     * @memberof TagFieldValidationOneOf1
+     */
+    'type'?: TagFieldValidationOneOf1TypeEnum;
+}
+
+/**
+    * @export
+    * @enum {string}
+    */
+export enum TagFieldValidationOneOf1TypeEnum {
+    Number = 'number',
+    Integer = 'integer',
+    Boolean = 'boolean'
+}
+
 
 /**
  * AccountApi - axios parameter creator
@@ -5161,6 +5259,50 @@ export const TagsApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
+         * @param {string} name 
+         * @param {InlineObject2} [inlineObject2] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        tagsPatch: async (name: string, inlineObject2?: InlineObject2, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'name' is not null or undefined
+            assertParamExists('tagsPatch', 'name', name)
+            const localVarPath = `/tags`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication chatdaddy required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", ["TAGS_CREATE"], configuration)
+
+            if (name !== undefined) {
+                localVarQueryParameter['name'] = name;
+            }
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject2, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Create a tag
          * @param {string} name 
          * @param {Array<string>} [tags] Get contacts who fall in either of these tags
@@ -5293,6 +5435,17 @@ export const TagsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @param {string} name 
+         * @param {InlineObject2} [inlineObject2] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async tagsPatch(name: string, inlineObject2?: InlineObject2, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Tag>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.tagsPatch(name, inlineObject2, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @summary Create a tag
          * @param {string} name 
          * @param {Array<string>} [tags] Get contacts who fall in either of these tags
@@ -5342,6 +5495,16 @@ export const TagsApiFactory = function (configuration?: Configuration, basePath?
          */
         tagsGet(options?: any): AxiosPromise<InlineResponse2009> {
             return localVarFp.tagsGet(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} name 
+         * @param {InlineObject2} [inlineObject2] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        tagsPatch(name: string, inlineObject2?: InlineObject2, options?: any): AxiosPromise<Tag> {
+            return localVarFp.tagsPatch(name, inlineObject2, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -5396,6 +5559,18 @@ export class TagsApi extends BaseAPI {
      */
     public tagsGet(options?: AxiosRequestConfig) {
         return TagsApiFp(this.configuration).tagsGet(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} name 
+     * @param {InlineObject2} [inlineObject2] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TagsApi
+     */
+    public tagsPatch(name: string, inlineObject2?: InlineObject2, options?: AxiosRequestConfig) {
+        return TagsApiFp(this.configuration).tagsPatch(name, inlineObject2, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
