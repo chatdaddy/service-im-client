@@ -131,6 +131,12 @@ export interface AccountSettings {
      * @memberof AccountSettings
      */
     'notifyUsers'?: Array<string>;
+    /**
+     * Should chat history be synced with the database
+     * @type {boolean}
+     * @memberof AccountSettings
+     */
+    'enableHistorySync'?: boolean;
 }
 /**
  * 
