@@ -853,30 +853,6 @@ export interface InlineObject {
  */
 export interface InlineObject1 {
     /**
-     * 
-     * @type {boolean}
-     * @memberof InlineObject1
-     */
-    'resolved'?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof InlineObject1
-     */
-    'text'?: string;
-    /**
-     * 
-     * @type {Array<MessageAttachment>}
-     * @memberof InlineObject1
-     */
-    'attachments'?: Array<MessageAttachment>;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof InlineObject1
-     */
-    'mentions'?: Array<string>;
-    /**
      * An ISO formatted timestamp
      * @type {string}
      * @memberof InlineObject1
@@ -891,8 +867,45 @@ export interface InlineObject1 {
 export interface InlineObject2 {
     /**
      * 
-     * @type {TagFieldValidation}
+     * @type {boolean}
      * @memberof InlineObject2
+     */
+    'resolved'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof InlineObject2
+     */
+    'text'?: string;
+    /**
+     * 
+     * @type {Array<MessageAttachment>}
+     * @memberof InlineObject2
+     */
+    'attachments'?: Array<MessageAttachment>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof InlineObject2
+     */
+    'mentions'?: Array<string>;
+    /**
+     * An ISO formatted timestamp
+     * @type {string}
+     * @memberof InlineObject2
+     */
+    'timestamp'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface InlineObject3
+ */
+export interface InlineObject3 {
+    /**
+     * 
+     * @type {TagFieldValidation}
+     * @memberof InlineObject3
      */
     'validation'?: TagFieldValidation;
 }
@@ -4448,14 +4461,18 @@ export const MessagesApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @summary Clears all pending messages
+         * @summary Clears all pending/error messages
+         * @param {'pending' | 'error'} status 
          * @param {string} [accountId] If specified, only clears messages of this account
          * @param {string} [chatId] If specified, only clears messages of this chat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        messagesDeletePending: async (accountId?: string, chatId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/messages/pending`;
+        messagesDeletePending: async (status: 'pending' | 'error', accountId?: string, chatId?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'status' is not null or undefined
+            assertParamExists('messagesDeletePending', 'status', status)
+            const localVarPath = `/messages/{status}/retry`
+                .replace(`{${"status"}}`, encodeURIComponent(String(status)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -4610,11 +4627,11 @@ export const MessagesApiAxiosParamCreator = function (configuration?: Configurat
          * @param {string} accountId 
          * @param {string} chatId 
          * @param {string} id 
-         * @param {InlineObject1} [inlineObject1] 
+         * @param {InlineObject2} [inlineObject2] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        messagesPatch: async (accountId: string, chatId: string, id: string, inlineObject1?: InlineObject1, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        messagesPatch: async (accountId: string, chatId: string, id: string, inlineObject2?: InlineObject2, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('messagesPatch', 'accountId', accountId)
             // verify required parameter 'chatId' is not null or undefined
@@ -4639,6 +4656,43 @@ export const MessagesApiAxiosParamCreator = function (configuration?: Configurat
             // authentication chatdaddy required
             // oauth required
             await setOAuthToObject(localVarHeaderParameter, "chatdaddy", [], configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject2, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retry all the messages in a given status
+         * @param {'pending' | 'error'} status 
+         * @param {InlineObject1} [inlineObject1] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        messagesPatchPending: async (status: 'pending' | 'error', inlineObject1?: InlineObject1, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'status' is not null or undefined
+            assertParamExists('messagesPatchPending', 'status', status)
+            const localVarPath = `/messages/{status}/retry`
+                .replace(`{${"status"}}`, encodeURIComponent(String(status)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
 
 
     
@@ -4842,14 +4896,15 @@ export const MessagesApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Clears all pending messages
+         * @summary Clears all pending/error messages
+         * @param {'pending' | 'error'} status 
          * @param {string} [accountId] If specified, only clears messages of this account
          * @param {string} [chatId] If specified, only clears messages of this chat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async messagesDeletePending(accountId?: string, chatId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.messagesDeletePending(accountId, chatId, options);
+        async messagesDeletePending(status: 'pending' | 'error', accountId?: string, chatId?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.messagesDeletePending(status, accountId, chatId, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -4887,12 +4942,23 @@ export const MessagesApiFp = function(configuration?: Configuration) {
          * @param {string} accountId 
          * @param {string} chatId 
          * @param {string} id 
+         * @param {InlineObject2} [inlineObject2] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async messagesPatch(accountId: string, chatId: string, id: string, inlineObject2?: InlineObject2, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Message>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.messagesPatch(accountId, chatId, id, inlineObject2, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * Retry all the messages in a given status
+         * @param {'pending' | 'error'} status 
          * @param {InlineObject1} [inlineObject1] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async messagesPatch(accountId: string, chatId: string, id: string, inlineObject1?: InlineObject1, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Message>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.messagesPatch(accountId, chatId, id, inlineObject1, options);
+        async messagesPatchPending(status: 'pending' | 'error', inlineObject1?: InlineObject1, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.messagesPatchPending(status, inlineObject1, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -4962,14 +5028,15 @@ export const MessagesApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
-         * @summary Clears all pending messages
+         * @summary Clears all pending/error messages
+         * @param {'pending' | 'error'} status 
          * @param {string} [accountId] If specified, only clears messages of this account
          * @param {string} [chatId] If specified, only clears messages of this chat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        messagesDeletePending(accountId?: string, chatId?: string, options?: any): AxiosPromise<InlineResponse2001> {
-            return localVarFp.messagesDeletePending(accountId, chatId, options).then((request) => request(axios, basePath));
+        messagesDeletePending(status: 'pending' | 'error', accountId?: string, chatId?: string, options?: any): AxiosPromise<InlineResponse2001> {
+            return localVarFp.messagesDeletePending(status, accountId, chatId, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -5004,12 +5071,22 @@ export const MessagesApiFactory = function (configuration?: Configuration, baseP
          * @param {string} accountId 
          * @param {string} chatId 
          * @param {string} id 
+         * @param {InlineObject2} [inlineObject2] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        messagesPatch(accountId: string, chatId: string, id: string, inlineObject2?: InlineObject2, options?: any): AxiosPromise<Message> {
+            return localVarFp.messagesPatch(accountId, chatId, id, inlineObject2, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retry all the messages in a given status
+         * @param {'pending' | 'error'} status 
          * @param {InlineObject1} [inlineObject1] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        messagesPatch(accountId: string, chatId: string, id: string, inlineObject1?: InlineObject1, options?: any): AxiosPromise<Message> {
-            return localVarFp.messagesPatch(accountId, chatId, id, inlineObject1, options).then((request) => request(axios, basePath));
+        messagesPatchPending(status: 'pending' | 'error', inlineObject1?: InlineObject1, options?: any): AxiosPromise<InlineResponse2001> {
+            return localVarFp.messagesPatchPending(status, inlineObject1, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -5077,15 +5154,16 @@ export class MessagesApi extends BaseAPI {
 
     /**
      * 
-     * @summary Clears all pending messages
+     * @summary Clears all pending/error messages
+     * @param {'pending' | 'error'} status 
      * @param {string} [accountId] If specified, only clears messages of this account
      * @param {string} [chatId] If specified, only clears messages of this chat
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MessagesApi
      */
-    public messagesDeletePending(accountId?: string, chatId?: string, options?: AxiosRequestConfig) {
-        return MessagesApiFp(this.configuration).messagesDeletePending(accountId, chatId, options).then((request) => request(this.axios, this.basePath));
+    public messagesDeletePending(status: 'pending' | 'error', accountId?: string, chatId?: string, options?: AxiosRequestConfig) {
+        return MessagesApiFp(this.configuration).messagesDeletePending(status, accountId, chatId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -5125,13 +5203,25 @@ export class MessagesApi extends BaseAPI {
      * @param {string} accountId 
      * @param {string} chatId 
      * @param {string} id 
+     * @param {InlineObject2} [inlineObject2] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MessagesApi
+     */
+    public messagesPatch(accountId: string, chatId: string, id: string, inlineObject2?: InlineObject2, options?: AxiosRequestConfig) {
+        return MessagesApiFp(this.configuration).messagesPatch(accountId, chatId, id, inlineObject2, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retry all the messages in a given status
+     * @param {'pending' | 'error'} status 
      * @param {InlineObject1} [inlineObject1] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MessagesApi
      */
-    public messagesPatch(accountId: string, chatId: string, id: string, inlineObject1?: InlineObject1, options?: AxiosRequestConfig) {
-        return MessagesApiFp(this.configuration).messagesPatch(accountId, chatId, id, inlineObject1, options).then((request) => request(this.axios, this.basePath));
+    public messagesPatchPending(status: 'pending' | 'error', inlineObject1?: InlineObject1, options?: AxiosRequestConfig) {
+        return MessagesApiFp(this.configuration).messagesPatchPending(status, inlineObject1, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -5266,11 +5356,11 @@ export const TagsApiAxiosParamCreator = function (configuration?: Configuration)
         /**
          * 
          * @param {string} name 
-         * @param {InlineObject2} [inlineObject2] 
+         * @param {InlineObject3} [inlineObject3] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        tagsPatch: async (name: string, inlineObject2?: InlineObject2, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        tagsPatch: async (name: string, inlineObject3?: InlineObject3, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'name' is not null or undefined
             assertParamExists('tagsPatch', 'name', name)
             const localVarPath = `/tags`;
@@ -5300,7 +5390,7 @@ export const TagsApiAxiosParamCreator = function (configuration?: Configuration)
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject2, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(inlineObject3, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -5442,12 +5532,12 @@ export const TagsApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {string} name 
-         * @param {InlineObject2} [inlineObject2] 
+         * @param {InlineObject3} [inlineObject3] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async tagsPatch(name: string, inlineObject2?: InlineObject2, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Tag>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.tagsPatch(name, inlineObject2, options);
+        async tagsPatch(name: string, inlineObject3?: InlineObject3, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Tag>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.tagsPatch(name, inlineObject3, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -5505,12 +5595,12 @@ export const TagsApiFactory = function (configuration?: Configuration, basePath?
         /**
          * 
          * @param {string} name 
-         * @param {InlineObject2} [inlineObject2] 
+         * @param {InlineObject3} [inlineObject3] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        tagsPatch(name: string, inlineObject2?: InlineObject2, options?: any): AxiosPromise<Tag> {
-            return localVarFp.tagsPatch(name, inlineObject2, options).then((request) => request(axios, basePath));
+        tagsPatch(name: string, inlineObject3?: InlineObject3, options?: any): AxiosPromise<Tag> {
+            return localVarFp.tagsPatch(name, inlineObject3, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -5570,13 +5660,13 @@ export class TagsApi extends BaseAPI {
     /**
      * 
      * @param {string} name 
-     * @param {InlineObject2} [inlineObject2] 
+     * @param {InlineObject3} [inlineObject3] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TagsApi
      */
-    public tagsPatch(name: string, inlineObject2?: InlineObject2, options?: AxiosRequestConfig) {
-        return TagsApiFp(this.configuration).tagsPatch(name, inlineObject2, options).then((request) => request(this.axios, this.basePath));
+    public tagsPatch(name: string, inlineObject3?: InlineObject3, options?: AxiosRequestConfig) {
+        return TagsApiFp(this.configuration).tagsPatch(name, inlineObject3, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
