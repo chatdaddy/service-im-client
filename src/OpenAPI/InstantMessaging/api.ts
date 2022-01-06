@@ -4694,6 +4694,10 @@ export const MessagesApiAxiosParamCreator = function (configuration?: Configurat
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            // authentication chatdaddy required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", ["MESSAGES_SEND_TO_ASSIGNED"], configuration)
+
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
