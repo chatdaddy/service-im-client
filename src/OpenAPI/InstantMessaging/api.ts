@@ -1354,7 +1354,7 @@ export interface MessageAttachment {
      * @type {any}
      * @memberof MessageAttachment
      */
-    'jpegThumbnail'?: any;
+    'jpegThumbnail'?: any | null;
     /**
      * duration of audio/video message
      * @type {number}
@@ -1785,7 +1785,7 @@ export interface QuotedMessage {
      * @type {string}
      * @memberof QuotedMessage
      */
-    'jpegThumbnail'?: string;
+    'jpegThumbnail'?: string | null;
 }
 /**
  * 
