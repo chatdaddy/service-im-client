@@ -158,7 +158,6 @@ export enum AccountState {
 
 export enum AccountType {
     Wa = 'wa',
-    WaMd = 'wa-md',
     Mock = 'mock'
 }
 
