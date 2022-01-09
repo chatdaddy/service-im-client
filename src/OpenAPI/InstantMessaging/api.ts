@@ -1206,6 +1206,12 @@ export interface Message {
      * @memberof Message
      */
     'buttons'?: Array<MessageContentButtons> | null;
+    /**
+     * 
+     * @type {Array<MessageProduct>}
+     * @memberof Message
+     */
+    'products'?: Array<MessageProduct> | null;
 }
 /**
  * 
@@ -1495,6 +1501,12 @@ export interface MessageCompose {
      * @memberof MessageCompose
      */
     'buttons'?: Array<MessageContentButtons> | null;
+    /**
+     * 
+     * @type {Array<MessageProduct>}
+     * @memberof MessageCompose
+     */
+    'products'?: Array<MessageProduct> | null;
 }
 
 /**
@@ -1595,6 +1607,12 @@ export interface MessageContent {
      * @memberof MessageContent
      */
     'buttons'?: Array<MessageContentButtons> | null;
+    /**
+     * 
+     * @type {Array<MessageProduct>}
+     * @memberof MessageContent
+     */
+    'products'?: Array<MessageProduct> | null;
 }
 /**
  * 
@@ -1633,6 +1651,37 @@ export interface MessageContentButtons {
      * @memberof MessageContentButtons
      */
     'text': string;
+}
+/**
+ * 
+ * @export
+ * @interface MessageProduct
+ */
+export interface MessageProduct {
+    /**
+     * 
+     * @type {string}
+     * @memberof MessageProduct
+     */
+    'id': string;
+    /**
+     * 3-letter ISO currency code
+     * @type {string}
+     * @memberof MessageProduct
+     */
+    'currencyCode': string;
+    /**
+     * the actual price * 1000
+     * @type {number}
+     * @memberof MessageProduct
+     */
+    'price1000': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof MessageProduct
+     */
+    'title'?: string;
 }
 /**
  * 
