@@ -634,6 +634,12 @@ export interface ContactsPostContacts {
      * @memberof ContactsPostContacts
      */
     'tags'?: Array<string> | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ContactsPostContacts
+     */
+    'assignee'?: string | null;
 }
 /**
  * 
