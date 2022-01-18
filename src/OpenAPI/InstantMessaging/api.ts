@@ -1676,6 +1676,18 @@ export interface MessageContentButtons {
      * @memberof MessageContentButtons
      */
     'text': string;
+    /**
+     * Make a button with a link
+     * @type {string}
+     * @memberof MessageContentButtons
+     */
+    'url'?: string;
+    /**
+     * Make a button with a phone number
+     * @type {string}
+     * @memberof MessageContentButtons
+     */
+    'phoneNumber'?: string;
 }
 /**
  * 
