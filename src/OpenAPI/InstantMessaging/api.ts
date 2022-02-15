@@ -4811,11 +4811,12 @@ export const MessagesApiAxiosParamCreator = function (configuration?: Configurat
          * @param {string} accountId The account to use to send the message.  Pass as the literal \&quot;random\&quot; to use a random account 
          * @param {string} chatId 
          * @param {boolean} [requireOpenAccount] Only sends the message if the account is open, returns 428 otherwise
+         * @param {boolean} [useRandomAccountIfAccountClosed] Use random account (if available) to send the message, if the account specified is closed
          * @param {MessageCompose} [messageCompose] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        messagesPost: async (accountId: string, chatId: string, requireOpenAccount?: boolean, messageCompose?: MessageCompose, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        messagesPost: async (accountId: string, chatId: string, requireOpenAccount?: boolean, useRandomAccountIfAccountClosed?: boolean, messageCompose?: MessageCompose, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('messagesPost', 'accountId', accountId)
             // verify required parameter 'chatId' is not null or undefined
@@ -4840,6 +4841,10 @@ export const MessagesApiAxiosParamCreator = function (configuration?: Configurat
 
             if (requireOpenAccount !== undefined) {
                 localVarQueryParameter['requireOpenAccount'] = requireOpenAccount;
+            }
+
+            if (useRandomAccountIfAccountClosed !== undefined) {
+                localVarQueryParameter['useRandomAccountIfAccountClosed'] = useRandomAccountIfAccountClosed;
             }
 
 
@@ -5064,12 +5069,13 @@ export const MessagesApiFp = function(configuration?: Configuration) {
          * @param {string} accountId The account to use to send the message.  Pass as the literal \&quot;random\&quot; to use a random account 
          * @param {string} chatId 
          * @param {boolean} [requireOpenAccount] Only sends the message if the account is open, returns 428 otherwise
+         * @param {boolean} [useRandomAccountIfAccountClosed] Use random account (if available) to send the message, if the account specified is closed
          * @param {MessageCompose} [messageCompose] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async messagesPost(accountId: string, chatId: string, requireOpenAccount?: boolean, messageCompose?: MessageCompose, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Message>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.messagesPost(accountId, chatId, requireOpenAccount, messageCompose, options);
+        async messagesPost(accountId: string, chatId: string, requireOpenAccount?: boolean, useRandomAccountIfAccountClosed?: boolean, messageCompose?: MessageCompose, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Message>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.messagesPost(accountId, chatId, requireOpenAccount, useRandomAccountIfAccountClosed, messageCompose, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -5191,12 +5197,13 @@ export const MessagesApiFactory = function (configuration?: Configuration, baseP
          * @param {string} accountId The account to use to send the message.  Pass as the literal \&quot;random\&quot; to use a random account 
          * @param {string} chatId 
          * @param {boolean} [requireOpenAccount] Only sends the message if the account is open, returns 428 otherwise
+         * @param {boolean} [useRandomAccountIfAccountClosed] Use random account (if available) to send the message, if the account specified is closed
          * @param {MessageCompose} [messageCompose] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        messagesPost(accountId: string, chatId: string, requireOpenAccount?: boolean, messageCompose?: MessageCompose, options?: any): AxiosPromise<Array<Message>> {
-            return localVarFp.messagesPost(accountId, chatId, requireOpenAccount, messageCompose, options).then((request) => request(axios, basePath));
+        messagesPost(accountId: string, chatId: string, requireOpenAccount?: boolean, useRandomAccountIfAccountClosed?: boolean, messageCompose?: MessageCompose, options?: any): AxiosPromise<Array<Message>> {
+            return localVarFp.messagesPost(accountId, chatId, requireOpenAccount, useRandomAccountIfAccountClosed, messageCompose, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -5327,13 +5334,14 @@ export class MessagesApi extends BaseAPI {
      * @param {string} accountId The account to use to send the message.  Pass as the literal \&quot;random\&quot; to use a random account 
      * @param {string} chatId 
      * @param {boolean} [requireOpenAccount] Only sends the message if the account is open, returns 428 otherwise
+     * @param {boolean} [useRandomAccountIfAccountClosed] Use random account (if available) to send the message, if the account specified is closed
      * @param {MessageCompose} [messageCompose] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MessagesApi
      */
-    public messagesPost(accountId: string, chatId: string, requireOpenAccount?: boolean, messageCompose?: MessageCompose, options?: AxiosRequestConfig) {
-        return MessagesApiFp(this.configuration).messagesPost(accountId, chatId, requireOpenAccount, messageCompose, options).then((request) => request(this.axios, this.basePath));
+    public messagesPost(accountId: string, chatId: string, requireOpenAccount?: boolean, useRandomAccountIfAccountClosed?: boolean, messageCompose?: MessageCompose, options?: AxiosRequestConfig) {
+        return MessagesApiFp(this.configuration).messagesPost(accountId, chatId, requireOpenAccount, useRandomAccountIfAccountClosed, messageCompose, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
