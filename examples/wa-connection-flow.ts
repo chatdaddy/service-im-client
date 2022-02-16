@@ -76,6 +76,9 @@ const run = async () => {
     if (account.state === AccountState.Open) {
       accountNowOpen = true
     }
+    if (account.state === AccountState.Close) {
+      console.log('Account closed because: ' + account.error)
+    }
   }
 
   while (true) {
