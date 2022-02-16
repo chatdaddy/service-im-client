@@ -24,10 +24,12 @@ const run = async () => {
 
   const accountsApi = new AccountApi(new Configuration({ accessToken }))
 
+  //Get first account
   let result = await accountsApi.accountsGet()
   let account = result.data.accounts[0]
 
   if (!account) {
+    //If account doesnt exist create one
     console.log('No account found creating account...')
     const result = await accountsApi.accountsPost({ type: AccountType.Wa, nickname: 'example' })
     account = result.data
@@ -36,17 +38,20 @@ const run = async () => {
   console.log('Connecting account id: ' + account.accountId)
 
   if (account.state === AccountState.Open) {
+    //if account is already open finish
     console.log('Account already open')
     return
   }
 
   if (account.state === AccountState.Close) {
+    // if account is closed open it to start qr code scanning process
     await accountsApi.accountsOpen(account.accountId)
   }
 
   let qrCode
 
   while (!qrCode) {
+    //poll account until qrcode is available in accounts state info
     result = await accountsApi.accountsGet()
     account = result.data.accounts[0]
 
@@ -74,6 +79,7 @@ const run = async () => {
   }
 
   while (true) {
+    // poll account until latest chats fetched
     result = await accountsApi.accountsGet()
     account = result.data.accounts[0]
     if (account.stateInfo.chats) {
