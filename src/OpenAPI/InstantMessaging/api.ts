@@ -1237,6 +1237,12 @@ export interface Message {
      * @memberof Message
      */
     'products'?: Array<MessageProduct> | null;
+    /**
+     * 
+     * @type {MessageContentOrder}
+     * @memberof Message
+     */
+    'order'?: MessageContentOrder | null;
 }
 /**
  * 
@@ -1532,6 +1538,12 @@ export interface MessageCompose {
      * @memberof MessageCompose
      */
     'products'?: Array<MessageProduct> | null;
+    /**
+     * 
+     * @type {MessageContentOrder}
+     * @memberof MessageCompose
+     */
+    'order'?: MessageContentOrder | null;
 }
 
 /**
@@ -1638,6 +1650,12 @@ export interface MessageContent {
      * @memberof MessageContent
      */
     'products'?: Array<MessageProduct> | null;
+    /**
+     * 
+     * @type {MessageContentOrder}
+     * @memberof MessageContent
+     */
+    'order'?: MessageContentOrder | null;
 }
 /**
  * 
@@ -1688,6 +1706,49 @@ export interface MessageContentButtons {
      * @memberof MessageContentButtons
      */
     'phoneNumber'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface MessageContentOrder
+ */
+export interface MessageContentOrder {
+    /**
+     * 
+     * @type {string}
+     * @memberof MessageContentOrder
+     */
+    'orderId': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof MessageContentOrder
+     */
+    'jpegThumbnail'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof MessageContentOrder
+     */
+    'itemCount'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof MessageContentOrder
+     */
+    'sellerId': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof MessageContentOrder
+     */
+    'token': string;
+    /**
+     * 
+     * @type {Price}
+     * @memberof MessageContentOrder
+     */
+    'total': Price;
 }
 /**
  * 
@@ -1835,6 +1896,25 @@ export enum PresenceType {
     StoppedTyping = 'stoppedTyping'
 }
 
+/**
+ * 
+ * @export
+ * @interface Price
+ */
+export interface Price {
+    /**
+     * 
+     * @type {number}
+     * @memberof Price
+     */
+    'amount': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Price
+     */
+    'currency': string;
+}
 /**
  * 
  * @export
