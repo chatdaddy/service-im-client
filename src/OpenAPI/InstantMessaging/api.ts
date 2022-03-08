@@ -139,7 +139,7 @@ export interface AccountSettings {
     'enableHistorySync'?: boolean;
 }
 /**
- * 
+ * Describes the current state of an account. 1. open => logged in & connected to WhatsApp. Can send & receive messages now 2. connecting => establishing connection to WhatsApp. QR code is available during this state 3. close => connection to WhatsApp is closed, account is inactive at the moment
  * @export
  * @enum {string}
  */
