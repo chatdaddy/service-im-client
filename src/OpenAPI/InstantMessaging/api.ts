@@ -2061,10 +2061,11 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
          * 
          * @summary Close connection to the account
          * @param {string} accountId 
+         * @param {boolean} [logout] Closes the account and logs out from the account
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsClose: async (accountId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        accountsClose: async (accountId: string, logout?: boolean, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'accountId' is not null or undefined
             assertParamExists('accountsClose', 'accountId', accountId)
             const localVarPath = `/accounts/{accountId}/close`
@@ -2083,6 +2084,10 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
             // authentication chatdaddy required
             // oauth required
             await setOAuthToObject(localVarHeaderParameter, "chatdaddy", ["ACCOUNT_PATCH"], configuration)
+
+            if (logout !== undefined) {
+                localVarQueryParameter['logout'] = logout;
+            }
 
 
     
@@ -2362,11 +2367,12 @@ export const AccountApiFp = function(configuration?: Configuration) {
          * 
          * @summary Close connection to the account
          * @param {string} accountId 
+         * @param {boolean} [logout] Closes the account and logs out from the account
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async accountsClose(accountId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsClose(accountId, options);
+        async accountsClose(accountId: string, logout?: boolean, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsClose(accountId, logout, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -2454,11 +2460,12 @@ export const AccountApiFactory = function (configuration?: Configuration, basePa
          * 
          * @summary Close connection to the account
          * @param {string} accountId 
+         * @param {boolean} [logout] Closes the account and logs out from the account
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        accountsClose(accountId: string, options?: any): AxiosPromise<void> {
-            return localVarFp.accountsClose(accountId, options).then((request) => request(axios, basePath));
+        accountsClose(accountId: string, logout?: boolean, options?: any): AxiosPromise<void> {
+            return localVarFp.accountsClose(accountId, logout, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -2539,12 +2546,13 @@ export class AccountApi extends BaseAPI {
      * 
      * @summary Close connection to the account
      * @param {string} accountId 
+     * @param {boolean} [logout] Closes the account and logs out from the account
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AccountApi
      */
-    public accountsClose(accountId: string, options?: AxiosRequestConfig) {
-        return AccountApiFp(this.configuration).accountsClose(accountId, options).then((request) => request(this.axios, this.basePath));
+    public accountsClose(accountId: string, logout?: boolean, options?: AxiosRequestConfig) {
+        return AccountApiFp(this.configuration).accountsClose(accountId, logout, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
