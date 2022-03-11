@@ -1886,6 +1886,69 @@ export interface ModelError {
 /**
  * 
  * @export
+ * @interface OrderDetails
+ */
+export interface OrderDetails {
+    /**
+     * 
+     * @type {OrderPrice}
+     * @memberof OrderDetails
+     */
+    'price'?: OrderPrice;
+    /**
+     * 
+     * @type {Array<OrderProduct>}
+     * @memberof OrderDetails
+     */
+    'products'?: Array<OrderProduct>;
+}
+/**
+ * 
+ * @export
+ * @interface OrderPrice
+ */
+export interface OrderPrice {
+    /**
+     * actual price * 1000
+     * @type {number}
+     * @memberof OrderPrice
+     */
+    'total1000'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof OrderPrice
+     */
+    'subtotal1000'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderPrice
+     */
+    'currency': string;
+}
+/**
+ * 
+ * @export
+ * @interface OrderProduct
+ */
+export interface OrderProduct {
+    /**
+     * 
+     * @type {MessageProduct}
+     * @memberof OrderProduct
+     */
+    'product': MessageProduct;
+    /**
+     * 
+     * @type {number}
+     * @memberof OrderProduct
+     */
+    'quantity': number;
+}
+/**
+ * 
+ * @export
  * @enum {string}
  */
 
@@ -5461,6 +5524,130 @@ export class MessagesApi extends BaseAPI {
      */
     public messagesSearch(q: string, accountId?: Array<string>, chatId?: string, page?: number, count?: number, returnChats?: boolean, options?: AxiosRequestConfig) {
         return MessagesApiFp(this.configuration).messagesSearch(q, accountId, chatId, page, count, returnChats, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+/**
+ * ProductApi - axios parameter creator
+ * @export
+ */
+export const ProductApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * 
+         * @summary Fetch details of an order (likely from an order message)
+         * @param {string} accountId 
+         * @param {string} orderId 
+         * @param {string} [token] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        orderDetailsGet: async (accountId: string, orderId: string, token?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'accountId' is not null or undefined
+            assertParamExists('orderDetailsGet', 'accountId', accountId)
+            // verify required parameter 'orderId' is not null or undefined
+            assertParamExists('orderDetailsGet', 'orderId', orderId)
+            const localVarPath = `/{accountId}/{orderId}/order-details`
+                .replace(`{${"accountId"}}`, encodeURIComponent(String(accountId)))
+                .replace(`{${"orderId"}}`, encodeURIComponent(String(orderId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication chatdaddy required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", [], configuration)
+
+            if (token !== undefined) {
+                localVarQueryParameter['token'] = token;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * ProductApi - functional programming interface
+ * @export
+ */
+export const ProductApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ProductApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * 
+         * @summary Fetch details of an order (likely from an order message)
+         * @param {string} accountId 
+         * @param {string} orderId 
+         * @param {string} [token] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async orderDetailsGet(accountId: string, orderId: string, token?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<OrderDetails>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.orderDetailsGet(accountId, orderId, token, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+    }
+};
+
+/**
+ * ProductApi - factory interface
+ * @export
+ */
+export const ProductApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ProductApiFp(configuration)
+    return {
+        /**
+         * 
+         * @summary Fetch details of an order (likely from an order message)
+         * @param {string} accountId 
+         * @param {string} orderId 
+         * @param {string} [token] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        orderDetailsGet(accountId: string, orderId: string, token?: string, options?: any): AxiosPromise<OrderDetails> {
+            return localVarFp.orderDetailsGet(accountId, orderId, token, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * ProductApi - object-oriented interface
+ * @export
+ * @class ProductApi
+ * @extends {BaseAPI}
+ */
+export class ProductApi extends BaseAPI {
+    /**
+     * 
+     * @summary Fetch details of an order (likely from an order message)
+     * @param {string} accountId 
+     * @param {string} orderId 
+     * @param {string} [token] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ProductApi
+     */
+    public orderDetailsGet(accountId: string, orderId: string, token?: string, options?: AxiosRequestConfig) {
+        return ProductApiFp(this.configuration).orderDetailsGet(accountId, orderId, token, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
