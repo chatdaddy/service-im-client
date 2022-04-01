@@ -1780,6 +1780,12 @@ export interface MessageProduct {
      * @memberof MessageProduct
      */
     'title'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof MessageProduct
+     */
+    'image'?: string;
 }
 /**
  * 
