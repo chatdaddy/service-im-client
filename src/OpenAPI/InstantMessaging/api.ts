@@ -648,11 +648,11 @@ export interface ContactsPostContacts {
      */
     'email'?: string;
     /**
-     * Tags to set on this contact. These tags don\'t have to exist on the DB beforehand
-     * @type {Array<string>}
+     * 
+     * @type {Array<ContactTag>}
      * @memberof ContactsPostContacts
      */
-    'tags'?: Array<string> | null;
+    'tags'?: Array<ContactTag> | null;
     /**
      * 
      * @type {string}
