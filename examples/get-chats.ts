@@ -20,7 +20,7 @@ const run = async() => {
 		request: {
 			refreshToken: REFRESH_TOKEN,
 			// get access to read chats
-			scopes: [ Scope.ChatsAccessAll]
+			scopes: [Scope.ChatsAccessAll]
 		}
 	})
 
@@ -50,7 +50,8 @@ const run = async() => {
 		undefined, // Filter these specific contact ids
 		undefined, // Search string for contact name/phone number/email
 		undefined, // Filter contacts assigned to the specified users
-		undefined, // Filter contacts only belonging to this account
+		undefined, // Filter contacts only belonging to this account,
+		undefined,
 		'group'
 	)
 
@@ -69,7 +70,8 @@ const run = async() => {
 		undefined, // Filter these specific contact ids
 		undefined, // Search string for contact name/phone number/email
 		undefined, // Filter contacts assigned to the specified users
-		undefined, // Filter contacts only belonging to this account
+		undefined, // Filter contacts only belonging to this account,
+		undefined, // only chats with the given account ID
 		'individual'
 	)
 
