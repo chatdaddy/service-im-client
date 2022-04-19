@@ -126,7 +126,7 @@ export interface AccountError {
  */
 export interface AccountSettings {
     /**
-     * 
+     * Supply a list of user IDs to notify when a new message arrives
      * @type {Array<string>}
      * @memberof AccountSettings
      */
@@ -167,12 +167,6 @@ export enum AccountType {
  * @interface AccountsPatchRequest
  */
 export interface AccountsPatchRequest {
-    /**
-     * 
-     * @type {AccountType}
-     * @memberof AccountsPatchRequest
-     */
-    'type'?: AccountType;
     /**
      * 
      * @type {string}
@@ -1243,6 +1237,12 @@ export interface Message {
      * @memberof Message
      */
     'order'?: MessageContentOrder | null;
+    /**
+     * 
+     * @type {MessageLinkPreview}
+     * @memberof Message
+     */
+    'linkPreview'?: MessageLinkPreview;
 }
 /**
  * 
@@ -1544,6 +1544,12 @@ export interface MessageCompose {
      * @memberof MessageCompose
      */
     'order'?: MessageContentOrder | null;
+    /**
+     * 
+     * @type {MessageLinkPreview}
+     * @memberof MessageCompose
+     */
+    'linkPreview'?: MessageLinkPreview;
 }
 
 /**
@@ -1656,6 +1662,12 @@ export interface MessageContent {
      * @memberof MessageContent
      */
     'order'?: MessageContentOrder | null;
+    /**
+     * 
+     * @type {MessageLinkPreview}
+     * @memberof MessageContent
+     */
+    'linkPreview'?: MessageLinkPreview;
 }
 /**
  * 
@@ -1749,6 +1761,37 @@ export interface MessageContentOrder {
      * @memberof MessageContentOrder
      */
     'total': Price;
+}
+/**
+ * 
+ * @export
+ * @interface MessageLinkPreview
+ */
+export interface MessageLinkPreview {
+    /**
+     * 
+     * @type {string}
+     * @memberof MessageLinkPreview
+     */
+    'jpegThumbnail'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof MessageLinkPreview
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof MessageLinkPreview
+     */
+    'description': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof MessageLinkPreview
+     */
+    'url': string;
 }
 /**
  * 
@@ -2343,8 +2386,8 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
             };
         },
         /**
-         * 
-         * @summary Delete an account
+         * Update name of the account or its settings
+         * @summary Update an account
          * @param {string} accountId 
          * @param {AccountsPatchRequest} [accountsPatchRequest] 
          * @param {*} [options] Override http request option.
@@ -2493,8 +2536,8 @@ export const AccountApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * 
-         * @summary Delete an account
+         * Update name of the account or its settings
+         * @summary Update an account
          * @param {string} accountId 
          * @param {AccountsPatchRequest} [accountsPatchRequest] 
          * @param {*} [options] Override http request option.
@@ -2581,8 +2624,8 @@ export const AccountApiFactory = function (configuration?: Configuration, basePa
             return localVarFp.accountsOpen(accountId, options).then((request) => request(axios, basePath));
         },
         /**
-         * 
-         * @summary Delete an account
+         * Update name of the account or its settings
+         * @summary Update an account
          * @param {string} accountId 
          * @param {AccountsPatchRequest} [accountsPatchRequest] 
          * @param {*} [options] Override http request option.
@@ -2677,8 +2720,8 @@ export class AccountApi extends BaseAPI {
     }
 
     /**
-     * 
-     * @summary Delete an account
+     * Update name of the account or its settings
+     * @summary Update an account
      * @param {string} accountId 
      * @param {AccountsPatchRequest} [accountsPatchRequest] 
      * @param {*} [options] Override http request option.
