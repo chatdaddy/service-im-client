@@ -505,6 +505,12 @@ export interface ContactImg {
      */
     'url'?: string;
     /**
+     * 
+     * @type {string}
+     * @memberof ContactImg
+     */
+    'fullUrl'?: string;
+    /**
      * An ISO formatted timestamp
      * @type {string}
      * @memberof ContactImg
@@ -3414,10 +3420,11 @@ export const ContactsApiAxiosParamCreator = function (configuration?: Configurat
          * @summary Get the display image of a contact
          * @param {string} id 
          * @param {string} accountId 
+         * @param {'preview' | 'full'} [type] Whether to fetch preview sized image or the full image
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        contactsImageGet: async (id: string, accountId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        contactsImageGet: async (id: string, accountId: string, type?: 'preview' | 'full', options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('contactsImageGet', 'id', id)
             // verify required parameter 'accountId' is not null or undefined
@@ -3439,6 +3446,10 @@ export const ContactsApiAxiosParamCreator = function (configuration?: Configurat
             // authentication chatdaddy required
             // oauth required
             await setOAuthToObject(localVarHeaderParameter, "chatdaddy", [], configuration)
+
+            if (type !== undefined) {
+                localVarQueryParameter['type'] = type;
+            }
 
 
     
@@ -3662,11 +3673,12 @@ export const ContactsApiFp = function(configuration?: Configuration) {
          * @summary Get the display image of a contact
          * @param {string} id 
          * @param {string} accountId 
+         * @param {'preview' | 'full'} [type] Whether to fetch preview sized image or the full image
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async contactsImageGet(id: string, accountId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.contactsImageGet(id, accountId, options);
+        async contactsImageGet(id: string, accountId: string, type?: 'preview' | 'full', options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2003>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.contactsImageGet(id, accountId, type, options);
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
@@ -3775,11 +3787,12 @@ export const ContactsApiFactory = function (configuration?: Configuration, baseP
          * @summary Get the display image of a contact
          * @param {string} id 
          * @param {string} accountId 
+         * @param {'preview' | 'full'} [type] Whether to fetch preview sized image or the full image
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        contactsImageGet(id: string, accountId: string, options?: any): AxiosPromise<InlineResponse2003> {
-            return localVarFp.contactsImageGet(id, accountId, options).then((request) => request(axios, basePath));
+        contactsImageGet(id: string, accountId: string, type?: 'preview' | 'full', options?: any): AxiosPromise<InlineResponse2003> {
+            return localVarFp.contactsImageGet(id, accountId, type, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -3891,12 +3904,13 @@ export class ContactsApi extends BaseAPI {
      * @summary Get the display image of a contact
      * @param {string} id 
      * @param {string} accountId 
+     * @param {'preview' | 'full'} [type] Whether to fetch preview sized image or the full image
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ContactsApi
      */
-    public contactsImageGet(id: string, accountId: string, options?: AxiosRequestConfig) {
-        return ContactsApiFp(this.configuration).contactsImageGet(id, accountId, options).then((request) => request(this.axios, this.basePath));
+    public contactsImageGet(id: string, accountId: string, type?: 'preview' | 'full', options?: AxiosRequestConfig) {
+        return ContactsApiFp(this.configuration).contactsImageGet(id, accountId, type, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
