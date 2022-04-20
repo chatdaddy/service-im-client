@@ -1798,6 +1798,12 @@ export interface MessageLinkPreview {
      * @memberof MessageLinkPreview
      */
     'url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof MessageLinkPreview
+     */
+    'matchedText'?: string;
 }
 /**
  * 
