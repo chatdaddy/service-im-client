@@ -137,6 +137,12 @@ export interface AccountSettings {
      * @memberof AccountSettings
      */
     'enableHistorySync'?: boolean;
+    /**
+     * Maximum number of months message history should be synced for
+     * @type {number}
+     * @memberof AccountSettings
+     */
+    'maxMessageSyncMonths'?: number;
 }
 /**
  * Describes the current state of an account. 1. open => logged in & connected to WhatsApp. Can send & receive messages now 2. connecting => establishing connection to WhatsApp. QR code is available during this state 3. close => connection to WhatsApp is closed, account is inactive at the moment
@@ -276,6 +282,12 @@ export interface Chat {
      * @memberof Chat
      */
     'disappearingMessages'?: number | null;
+    /**
+     * If the chat has all the message history from the primary source
+     * @type {boolean}
+     * @memberof Chat
+     */
+    'hasEntireMessageHistory': boolean;
     /**
      * 
      * @type {Contact}
