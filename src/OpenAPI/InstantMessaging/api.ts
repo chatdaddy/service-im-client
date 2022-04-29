@@ -143,6 +143,12 @@ export interface AccountSettings {
      * @memberof AccountSettings
      */
     'maxMessageSyncMonths'?: number;
+    /**
+     * Will doing a chat action (like archive, mark unread) actually sync it back with the primary device
+     * @type {boolean}
+     * @memberof AccountSettings
+     */
+    'nativeChatActionSync'?: boolean;
 }
 /**
  * Describes the current state of an account. 1. open => logged in & connected to WhatsApp. Can send & receive messages now 2. connecting => establishing connection to WhatsApp. QR code is available during this state 3. close => connection to WhatsApp is closed, account is inactive at the moment
