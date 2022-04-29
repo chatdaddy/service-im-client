@@ -1232,6 +1232,12 @@ export interface Message {
      */
     'quoted'?: QuotedMessage | null;
     /**
+     * True, if the message was deleted
+     * @type {boolean}
+     * @memberof Message
+     */
+    'deleted'?: boolean;
+    /**
      * 
      * @type {MessageContentAction}
      * @memberof Message
@@ -1539,6 +1545,12 @@ export interface MessageCompose {
      */
     'quoted'?: QuotedMessage | null;
     /**
+     * True, if the message was deleted
+     * @type {boolean}
+     * @memberof MessageCompose
+     */
+    'deleted'?: boolean;
+    /**
      * 
      * @type {MessageContentAction}
      * @memberof MessageCompose
@@ -1656,6 +1668,12 @@ export interface MessageContent {
      * @memberof MessageContent
      */
     'quoted'?: QuotedMessage | null;
+    /**
+     * True, if the message was deleted
+     * @type {boolean}
+     * @memberof MessageContent
+     */
+    'deleted'?: boolean;
     /**
      * 
      * @type {MessageContentAction}
