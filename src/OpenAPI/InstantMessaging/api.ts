@@ -1284,7 +1284,7 @@ export interface Message {
      * @type {Array<MessageReaction>}
      * @memberof Message
      */
-    'reactions'?: Array<MessageReaction>;
+    'reactions'?: Array<MessageReaction> | null;
 }
 /**
  * 
@@ -1609,7 +1609,7 @@ export interface MessageCompose {
      * @type {Array<MessageReaction>}
      * @memberof MessageCompose
      */
-    'reactions'?: Array<MessageReaction>;
+    'reactions'?: Array<MessageReaction> | null;
 }
 
 /**
@@ -1739,7 +1739,7 @@ export interface MessageContent {
      * @type {Array<MessageReaction>}
      * @memberof MessageContent
      */
-    'reactions'?: Array<MessageReaction>;
+    'reactions'?: Array<MessageReaction> | null;
 }
 /**
  * 
