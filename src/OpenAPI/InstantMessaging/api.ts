@@ -1273,6 +1273,12 @@ export interface Message {
      * @memberof Message
      */
     'linkPreview'?: MessageLinkPreview;
+    /**
+     * 
+     * @type {Array<MessageReaction>}
+     * @memberof Message
+     */
+    'reactions'?: Array<MessageReaction>;
 }
 /**
  * 
@@ -1586,6 +1592,12 @@ export interface MessageCompose {
      * @memberof MessageCompose
      */
     'linkPreview'?: MessageLinkPreview;
+    /**
+     * 
+     * @type {Array<MessageReaction>}
+     * @memberof MessageCompose
+     */
+    'reactions'?: Array<MessageReaction>;
 }
 
 /**
@@ -1710,6 +1722,12 @@ export interface MessageContent {
      * @memberof MessageContent
      */
     'linkPreview'?: MessageLinkPreview;
+    /**
+     * 
+     * @type {Array<MessageReaction>}
+     * @memberof MessageContent
+     */
+    'reactions'?: Array<MessageReaction>;
 }
 /**
  * 
@@ -1878,6 +1896,46 @@ export interface MessageProduct {
      */
     'image'?: string;
 }
+/**
+ * 
+ * @export
+ * @interface MessageReaction
+ */
+export interface MessageReaction {
+    /**
+     * 
+     * @type {MessageReactionType}
+     * @memberof MessageReaction
+     */
+    'reaction': MessageReactionType;
+    /**
+     * ID for the contact/chat on the platform
+     * @type {string}
+     * @memberof MessageReaction
+     */
+    'fromId': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof MessageReaction
+     */
+    'id': string;
+}
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export enum MessageReactionType {
+     = '👍',
+     = '❤️',
+     = '😂',
+     = '😯',
+     = '😢',
+     = '🙏'
+}
+
 /**
  * 
  * @export
