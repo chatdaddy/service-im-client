@@ -1209,6 +1209,12 @@ export interface Message {
     'resolvedAt'?: string | null;
     /**
      * 
+     * @type {boolean}
+     * @memberof Message
+     */
+    'hidden'?: boolean;
+    /**
+     * 
      * @type {MiscOptions}
      * @memberof Message
      */
@@ -1352,6 +1358,12 @@ export interface MessageAllOf {
      * @memberof MessageAllOf
      */
     'resolvedAt'?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof MessageAllOf
+     */
+    'hidden'?: boolean;
     /**
      * 
      * @type {MiscOptions}
