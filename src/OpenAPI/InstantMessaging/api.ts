@@ -1932,6 +1932,12 @@ export interface MessageReaction {
      * @memberof MessageReaction
      */
     'id': string;
+    /**
+     * An ISO formatted timestamp
+     * @type {string}
+     * @memberof MessageReaction
+     */
+    'timestamp'?: string;
 }
 /**
  * 
