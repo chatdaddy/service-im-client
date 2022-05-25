@@ -1946,12 +1946,12 @@ export interface MessageReaction {
  */
 
 export enum MessageReactionType {
-     = '👍',
-     = '❤️',
-     = '😂',
-     = '😯',
-     = '😢',
-     = '🙏'
+    '👍' = '👍',
+    '❤️' = '❤️',
+    '😂' = '😂',
+    '😯' = '😯',
+    '😢' = '😢',
+    '🙏' = '🙏'
 }
 
 /**
@@ -5138,10 +5138,10 @@ export const MessagesApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * Send a message with text and/or attachments. The `text` property can be used as a [mustache](https://mustache.github.io) template which automatically prefills data from the contact\'s details including **custom fields**. Some examples:   1. `{\"text\": \"Hello there {{name}}\"}` will automatically pre-fill the contact\'s name (if present)   2. `{\"text\": \"Hello {{name}} your number is {{phoneNumber}}\"}` will automatically pre-fill the contact\'s name & phone number   3. `{\"text\": \"Hello {{name}} your pet name is {{pet name}}\"}` will automatically pre-fill `petName` if the contact has such a custom field
+         * 
          * @summary Send a message
          * @param {string} accountId The account to use to send the message.  Pass as the literal \&quot;random\&quot; to use a random account 
-         * @param {string} chatId The contact to send the message to.   To send to a phone number, supply the phone number with country code and no spaces. Eg. &#x60;911234534211&#x60;, &#x60;91345567543@s.whatsapp.net&#x60; 
+         * @param {string} chatId 
          * @param {boolean} [requireOpenAccount] Only sends the message if the account is open, returns 428 otherwise
          * @param {boolean} [useRandomAccountIfAccountClosed] Use random account (if available) to send the message, if the account specified is closed
          * @param {boolean} [includeMarketingMessage] Includes the default marketing message for the account in the message
@@ -5401,10 +5401,10 @@ export const MessagesApiFp = function(configuration?: Configuration) {
             return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
         },
         /**
-         * Send a message with text and/or attachments. The `text` property can be used as a [mustache](https://mustache.github.io) template which automatically prefills data from the contact\'s details including **custom fields**. Some examples:   1. `{\"text\": \"Hello there {{name}}\"}` will automatically pre-fill the contact\'s name (if present)   2. `{\"text\": \"Hello {{name}} your number is {{phoneNumber}}\"}` will automatically pre-fill the contact\'s name & phone number   3. `{\"text\": \"Hello {{name}} your pet name is {{pet name}}\"}` will automatically pre-fill `petName` if the contact has such a custom field
+         * 
          * @summary Send a message
          * @param {string} accountId The account to use to send the message.  Pass as the literal \&quot;random\&quot; to use a random account 
-         * @param {string} chatId The contact to send the message to.   To send to a phone number, supply the phone number with country code and no spaces. Eg. &#x60;911234534211&#x60;, &#x60;91345567543@s.whatsapp.net&#x60; 
+         * @param {string} chatId 
          * @param {boolean} [requireOpenAccount] Only sends the message if the account is open, returns 428 otherwise
          * @param {boolean} [useRandomAccountIfAccountClosed] Use random account (if available) to send the message, if the account specified is closed
          * @param {boolean} [includeMarketingMessage] Includes the default marketing message for the account in the message
@@ -5530,10 +5530,10 @@ export const MessagesApiFactory = function (configuration?: Configuration, baseP
             return localVarFp.messagesPatchPending(status, inlineObject1, options).then((request) => request(axios, basePath));
         },
         /**
-         * Send a message with text and/or attachments. The `text` property can be used as a [mustache](https://mustache.github.io) template which automatically prefills data from the contact\'s details including **custom fields**. Some examples:   1. `{\"text\": \"Hello there {{name}}\"}` will automatically pre-fill the contact\'s name (if present)   2. `{\"text\": \"Hello {{name}} your number is {{phoneNumber}}\"}` will automatically pre-fill the contact\'s name & phone number   3. `{\"text\": \"Hello {{name}} your pet name is {{pet name}}\"}` will automatically pre-fill `petName` if the contact has such a custom field
+         * 
          * @summary Send a message
          * @param {string} accountId The account to use to send the message.  Pass as the literal \&quot;random\&quot; to use a random account 
-         * @param {string} chatId The contact to send the message to.   To send to a phone number, supply the phone number with country code and no spaces. Eg. &#x60;911234534211&#x60;, &#x60;91345567543@s.whatsapp.net&#x60; 
+         * @param {string} chatId 
          * @param {boolean} [requireOpenAccount] Only sends the message if the account is open, returns 428 otherwise
          * @param {boolean} [useRandomAccountIfAccountClosed] Use random account (if available) to send the message, if the account specified is closed
          * @param {boolean} [includeMarketingMessage] Includes the default marketing message for the account in the message
@@ -5668,10 +5668,10 @@ export class MessagesApi extends BaseAPI {
     }
 
     /**
-     * Send a message with text and/or attachments. The `text` property can be used as a [mustache](https://mustache.github.io) template which automatically prefills data from the contact\'s details including **custom fields**. Some examples:   1. `{\"text\": \"Hello there {{name}}\"}` will automatically pre-fill the contact\'s name (if present)   2. `{\"text\": \"Hello {{name}} your number is {{phoneNumber}}\"}` will automatically pre-fill the contact\'s name & phone number   3. `{\"text\": \"Hello {{name}} your pet name is {{pet name}}\"}` will automatically pre-fill `petName` if the contact has such a custom field
+     * 
      * @summary Send a message
      * @param {string} accountId The account to use to send the message.  Pass as the literal \&quot;random\&quot; to use a random account 
-     * @param {string} chatId The contact to send the message to.   To send to a phone number, supply the phone number with country code and no spaces. Eg. &#x60;911234534211&#x60;, &#x60;91345567543@s.whatsapp.net&#x60; 
+     * @param {string} chatId 
      * @param {boolean} [requireOpenAccount] Only sends the message if the account is open, returns 428 otherwise
      * @param {boolean} [useRandomAccountIfAccountClosed] Use random account (if available) to send the message, if the account specified is closed
      * @param {boolean} [includeMarketingMessage] Includes the default marketing message for the account in the message
