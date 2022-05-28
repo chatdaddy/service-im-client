@@ -38,7 +38,7 @@ const run = async() => {
 
 	console.log(`got chat with name: "${chat.contact?.name || 'unknown'}" and ID: "${chat.id}"`)
 	// send a text message to the chat
-	const { data: messages } = await messagesApi.messagesPost('random', chat.id, {
+	const { data: messages } = await messagesApi.messagesPost('random', chat.id, undefined, undefined, undefined, {
 		text: 'Hello from API',
 		// mark it as a pending message
 		// if you want to keep it as a "note", use the status "Note"
