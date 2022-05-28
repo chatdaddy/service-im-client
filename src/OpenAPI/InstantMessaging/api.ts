@@ -198,6 +198,12 @@ export interface AccountsPatchRequest {
     'nickname'?: string;
     /**
      * 
+     * @type {AccountTier}
+     * @memberof AccountsPatchRequest
+     */
+    'tier'?: AccountTier;
+    /**
+     * 
      * @type {AccountSettings}
      * @memberof AccountsPatchRequest
      */
