@@ -2303,6 +2303,44 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
     return {
         /**
          * 
+         * @summary Archive an account. Logs out of the account & removes all synced chats, messages. Keeps contacts, and notes.
+         * @param {string} accountId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsArchive: async (accountId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'accountId' is not null or undefined
+            assertParamExists('accountsArchive', 'accountId', accountId)
+            const localVarPath = `/accounts/{accountId}/archive`
+                .replace(`{${"accountId"}}`, encodeURIComponent(String(accountId)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication chatdaddy required
+            // oauth required
+            await setOAuthToObject(localVarHeaderParameter, "chatdaddy", ["ACCOUNT_DELETE"], configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Close connection to the account
          * @param {string} accountId 
          * @param {boolean} [logout] Closes the account and logs out from the account
@@ -2609,6 +2647,17 @@ export const AccountApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @summary Archive an account. Logs out of the account & removes all synced chats, messages. Keeps contacts, and notes.
+         * @param {string} accountId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async accountsArchive(accountId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<InlineResponse2001>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.accountsArchive(accountId, options);
+            return createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration);
+        },
+        /**
+         * 
          * @summary Close connection to the account
          * @param {string} accountId 
          * @param {boolean} [logout] Closes the account and logs out from the account
@@ -2702,6 +2751,16 @@ export const AccountApiFactory = function (configuration?: Configuration, basePa
     return {
         /**
          * 
+         * @summary Archive an account. Logs out of the account & removes all synced chats, messages. Keeps contacts, and notes.
+         * @param {string} accountId 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        accountsArchive(accountId: string, options?: any): AxiosPromise<InlineResponse2001> {
+            return localVarFp.accountsArchive(accountId, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
          * @summary Close connection to the account
          * @param {string} accountId 
          * @param {boolean} [logout] Closes the account and logs out from the account
@@ -2786,6 +2845,18 @@ export const AccountApiFactory = function (configuration?: Configuration, basePa
  * @extends {BaseAPI}
  */
 export class AccountApi extends BaseAPI {
+    /**
+     * 
+     * @summary Archive an account. Logs out of the account & removes all synced chats, messages. Keeps contacts, and notes.
+     * @param {string} accountId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountApi
+     */
+    public accountsArchive(accountId: string, options?: AxiosRequestConfig) {
+        return AccountApiFp(this.configuration).accountsArchive(accountId, options).then((request) => request(this.axios, this.basePath));
+    }
+
     /**
      * 
      * @summary Close connection to the account
