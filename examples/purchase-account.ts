@@ -41,4 +41,11 @@ import { AccountApi, AccountTier, AccountType, Configuration } from '../src'
 	async function archiveAccount(accountId: string) {
 		await accountsApi.accountsArchive(accountId)
 	}
+
+	/// upgrades the account tier to "unlimited messages & chat history"
+	async function updateAccountTier(accountId: string) {
+		await accountsApi.accountsPatch(accountId, {
+			tier: AccountTier.UnlimitedMsgChatHistory	
+		})
+	}
 })()
