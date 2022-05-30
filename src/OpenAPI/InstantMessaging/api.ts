@@ -70,6 +70,18 @@ export interface Account {
      */
     'updatedAt': string;
     /**
+     * An ISO formatted timestamp
+     * @type {string}
+     * @memberof Account
+     */
+    'lastLoginAt'?: string | null;
+    /**
+     * An ISO formatted timestamp
+     * @type {string}
+     * @memberof Account
+     */
+    'lastLogoutAt'?: string | null;
+    /**
      * 
      * @type {AccountState}
      * @memberof Account
@@ -138,11 +150,11 @@ export interface AccountSettings {
      */
     'enableHistorySync'?: boolean;
     /**
-     * Maximum number of months message history should be synced for
+     * Maximum number of messages that would be synced to the database
      * @type {number}
      * @memberof AccountSettings
      */
-    'maxMessageSyncMonths'?: number;
+    'maxMessageSync'?: number;
     /**
      * Will doing a chat action (like archive, mark unread) actually sync it back with the primary device
      * @type {boolean}
